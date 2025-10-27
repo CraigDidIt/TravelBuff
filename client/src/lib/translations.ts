@@ -232,7 +232,7 @@ export const translations: Record<Language, Translations> = {
         feature3: 'Post-procedure recovery assistance and follow-up care',
         feature4: 'Transparent pricing with no hidden fees or surprises',
         cta: 'Explore Medical Tourism →',
-        badge: '🏥 25+ Vetted Medical Partners',
+        badge: '25+ Vetted Medical Partners',
       },
       romantic: {
         eyebrow: 'CURATED EXPERIENCES',
@@ -243,7 +243,7 @@ export const translations: Record<Language, Translations> = {
         feature3: 'Off-the-beaten-path destinations and cultural immersion',
         feature4: 'Solo-friendly or romance-optimized trip design',
         cta: 'Plan Your Getaway →',
-        badge: '🌍 Europe • Latin America • Caribbean',
+        badge: 'Europe • Latin America • Caribbean',
       },
       caribbean: {
         eyebrow: 'INBOUND EXPERIENCES',
@@ -254,7 +254,7 @@ export const translations: Record<Language, Translations> = {
         feature3: 'Off-resort destinations showcasing authentic Caribbean life',
         feature4: 'Multilingual support for seamless cultural exchange',
         cta: 'Experience Caribbean Culture →',
-        badge: '🏝️ 5 Caribbean Islands • Authentic Experiences',
+        badge: '5 Caribbean Islands • Authentic Experiences',
       },
     },
     stats: {
@@ -427,7 +427,7 @@ export const translations: Record<Language, Translations> = {
         feature3: 'Asistencia de recuperación post-procedimiento y seguimiento',
         feature4: 'Precios transparentes sin tarifas ocultas ni sorpresas',
         cta: 'Explorar Turismo Médico →',
-        badge: '🏥 25+ Socios Médicos Verificados',
+        badge: '25+ Socios Médicos Verificados',
       },
       romantic: {
         eyebrow: 'EXPERIENCIAS CURADAS',
@@ -438,7 +438,7 @@ export const translations: Record<Language, Translations> = {
         feature3: 'Destinos fuera de lo común e inmersión cultural',
         feature4: 'Diseño de viaje optimizado para solitarios o romance',
         cta: 'Planifica Tu Escapada →',
-        badge: '🌍 Europa • Latinoamérica • Caribe',
+        badge: 'Europa • Latinoamérica • Caribe',
       },
       caribbean: {
         eyebrow: 'EXPERIENCIAS LOCALES',
@@ -449,7 +449,7 @@ export const translations: Record<Language, Translations> = {
         feature3: 'Destinos fuera del resort que muestran la vida caribeña auténtica',
         feature4: 'Soporte multilingüe para un intercambio cultural sin problemas',
         cta: 'Experimenta la Cultura Caribeña →',
-        badge: '🏝️ 5 Islas del Caribe • Experiencias Auténticas',
+        badge: '5 Islas del Caribe • Experiencias Auténticas',
       },
     },
     stats: {
@@ -622,7 +622,7 @@ export const translations: Record<Language, Translations> = {
         feature3: 'Assistance de récupération post-procédure et soins de suivi',
         feature4: 'Prix transparents sans frais cachés ni surprises',
         cta: 'Explorer le Tourisme Médical →',
-        badge: '🏥 25+ Partenaires Médicaux Vérifiés',
+        badge: '25+ Partenaires Médicaux Vérifiés',
       },
       romantic: {
         eyebrow: 'EXPÉRIENCES CURÉES',
@@ -633,7 +633,7 @@ export const translations: Record<Language, Translations> = {
         feature3: 'Destinations hors des sentiers battus et immersion culturelle',
         feature4: 'Conception de voyage optimisée pour solo ou romance',
         cta: 'Planifiez Votre Escapade →',
-        badge: '🌍 Europe • Amérique Latine • Caraïbes',
+        badge: 'Europe • Amérique Latine • Caraïbes',
       },
       caribbean: {
         eyebrow: 'EXPÉRIENCES LOCALES',
@@ -644,7 +644,7 @@ export const translations: Record<Language, Translations> = {
         feature3: 'Destinations hors resort montrant la vie caribéenne authentique',
         feature4: 'Support multilingue pour un échange culturel sans faille',
         cta: 'Découvrez la Culture Caribéenne →',
-        badge: '🏝️ 5 Îles des Caraïbes • Expériences Authentiques',
+        badge: '5 Îles des Caraïbes • Expériences Authentiques',
       },
     },
     stats: {

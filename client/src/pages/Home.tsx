@@ -12,6 +12,7 @@ import medicalImage from "@assets/stock_images/medical_consultation_4bfd952c.jpg
 import romanticImage from "@assets/stock_images/couple_romantic_dinn_e4b7c36e.jpg";
 import caribbeanImage from "@assets/stock_images/caribbean_beach_trop_c77c5893.jpg";
 import { useEffect } from "react";
+import { Hospital, Globe, Palmtree } from "lucide-react";
 
 export default function Home() {
   const { t } = useLanguage();
@@ -70,6 +71,7 @@ export default function Home() {
           ctaText={t.services.medical.cta}
           ctaLink="/medical-tourism"
           trustBadge={t.services.medical.badge}
+          trustBadgeIcon={Hospital}
           image={medicalImage}
           imageAlt="Medical consultation in modern facility"
           imagePosition="right"
@@ -91,6 +93,7 @@ export default function Home() {
           ctaText={t.services.romantic.cta}
           ctaLink="/romantic-solo"
           trustBadge={t.services.romantic.badge}
+          trustBadgeIcon={Globe}
           image={romanticImage}
           imageAlt="Romantic couple dining experience"
           imagePosition="left"
@@ -112,6 +115,7 @@ export default function Home() {
           ctaText={t.services.caribbean.cta}
           ctaLink="/caribbean-immersion"
           trustBadge={t.services.caribbean.badge}
+          trustBadgeIcon={Palmtree}
           image={caribbeanImage}
           imageAlt="Caribbean beach paradise"
           imagePosition="right"

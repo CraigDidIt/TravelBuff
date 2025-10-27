@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { Check } from "lucide-react";
+import { Check, LucideIcon } from "lucide-react";
 import { Link } from "wouter";
 
 interface ServiceSectionProps {
@@ -12,6 +12,7 @@ interface ServiceSectionProps {
   ctaText: string;
   ctaLink?: string;
   trustBadge: string;
+  trustBadgeIcon?: LucideIcon;
   image: string;
   imageAlt: string;
   imagePosition: "left" | "right";
@@ -29,6 +30,7 @@ export function ServiceSection({
   ctaText,
   ctaLink,
   trustBadge,
+  trustBadgeIcon: TrustBadgeIcon,
   image,
   imageAlt,
   imagePosition,
@@ -160,9 +162,10 @@ export function ServiceSection({
             )}
 
             {/* Trust Badge */}
-            <p className="text-navy/60 text-sm relative z-10" data-testid={`badge-trust-${sectionNumber}`}>
-              {trustBadge}
-            </p>
+            <div className="flex items-center gap-2 text-navy/60 text-sm relative z-10" data-testid={`badge-trust-${sectionNumber}`}>
+              {TrustBadgeIcon && <TrustBadgeIcon className="w-4 h-4 flex-shrink-0" />}
+              <span>{trustBadge}</span>
+            </div>
           </div>
         </div>
       </div>

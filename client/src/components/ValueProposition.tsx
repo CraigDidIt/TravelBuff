@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { Languages, Handshake, Sparkles, Download } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { GuideDownloadModal } from "@/components/GuideDownloadModal";
+import { useLanguage } from "@/contexts/LanguageContext";
 import valueImage from "@assets/stock_images/cooking_kitchen_cult_67978ff0.jpg";
 
 export function ValueProposition() {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [showGuideModal, setShowGuideModal] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -54,30 +56,18 @@ export function ValueProposition() {
           >
             {/* Eyebrow */}
             <p className="text-coral uppercase text-sm tracking-[0.15em] font-semibold mb-4" data-testid="text-eyebrow-value">
-              WHY TRAVELBUFF EXISTS
+              {t.valueProposition.eyebrow}
             </p>
 
             {/* Headline */}
             <h2 className="font-serif text-4xl lg:text-5xl text-navy mb-6 leading-tight" data-testid="heading-value-proposition">
-              Travel Beyond Transactions.<br />
-              Experience Cultural Connection.
+              {t.valueProposition.headline}
             </h2>
 
             {/* Body Copy */}
-            <div className="space-y-4 text-navy/80 text-lg lg:text-xl leading-relaxed max-w-xl mb-10" data-testid="text-body-value">
-              <p>
-                Travelbuff isn't a booking platform—it's your cultural bridge to the world.
-              </p>
-              <p>
-                Whether you're seeking world-class medical care in Latin America, planning
-                an unforgettable romantic escape, or discovering Caribbean life through local
-                eyes, we curate every detail with white-glove precision and authentic expertise.
-              </p>
-              <p className="font-semibold text-navy">
-                Because the best journeys aren't found online. They're crafted through relationships,
-                cultural fluency, and genuine care.
-              </p>
-            </div>
+            <p className="text-navy/80 text-lg lg:text-xl leading-relaxed max-w-xl mb-10" data-testid="text-body-value">
+              {t.valueProposition.body}
+            </p>
 
             {/* Three-Icon Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -86,7 +76,7 @@ export function ValueProposition() {
                   <Languages className="w-10 h-10 text-gold" />
                 </div>
                 <h3 className="font-sans font-bold text-navy text-base mb-1">
-                  Trilingual Expertise
+                  {t.valueProposition.feature1}
                 </h3>
                 <p className="text-navy/60 text-sm">
                   English, Spanish & French
@@ -98,7 +88,7 @@ export function ValueProposition() {
                   <Handshake className="w-10 h-10 text-gold" />
                 </div>
                 <h3 className="font-sans font-bold text-navy text-base mb-1">
-                  Vetted Partners
+                  {t.valueProposition.feature2}
                 </h3>
                 <p className="text-navy/60 text-sm">
                   25+ trusted connections
@@ -110,7 +100,7 @@ export function ValueProposition() {
                   <Sparkles className="w-10 h-10 text-gold" />
                 </div>
                 <h3 className="font-sans font-bold text-navy text-base mb-1">
-                  Personalized Curation
+                  {t.valueProposition.feature3}
                 </h3>
                 <p className="text-navy/60 text-sm">
                   Zero cookie-cutter packages

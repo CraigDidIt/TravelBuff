@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function PartnerShowcase() {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
@@ -35,22 +37,22 @@ export function PartnerShowcase() {
       <div className="max-w-6xl mx-auto px-8">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <p 
-            className={`text-navy/60 uppercase text-sm tracking-[0.15em] font-semibold mb-4 transition-all duration-700 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-            }`}
-            data-testid="text-eyebrow-partners"
-          >
-            TRUSTED BY LEADING ORGANIZATIONS
-          </p>
           <h2 
-            className={`font-serif text-3xl lg:text-4xl text-navy transition-all duration-700 delay-100 ${
+            className={`font-serif text-3xl lg:text-4xl text-navy mb-4 transition-all duration-700 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
             }`}
             data-testid="heading-partners"
           >
-            Our Vetted Partner Network
+            {t.partners.headline}
           </h2>
+          <p 
+            className={`text-navy/70 text-lg max-w-2xl mx-auto transition-all duration-700 delay-100 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            data-testid="text-partners-subheadline"
+          >
+            {t.partners.subheadline}
+          </p>
         </div>
 
         {/* Partner Logos Grid */}
@@ -82,16 +84,6 @@ export function PartnerShowcase() {
           ))}
         </div>
 
-        {/* Additional Trust Statement */}
-        <p 
-          className={`text-center text-navy/70 text-base mt-12 transition-all duration-700 delay-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-          data-testid="text-trust-statement"
-        >
-          All partners undergo rigorous vetting to ensure the highest standards of service,
-          safety, and authentic cultural experiences.
-        </p>
       </div>
     </section>
   );

@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { insertBookingSchema, type InsertBooking } from "@shared/schema";
 import { apiRequest, queryClient } from "@/lib/queryClient";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -40,6 +41,7 @@ interface BookingCalendarProps {
 }
 
 export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [selectedDate, setSelectedDate] = useState<Date | undefined>(undefined);
   const [selectedTime, setSelectedTime] = useState<string>("");
@@ -72,8 +74,8 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
     onSuccess: () => {
       setIsSubmitted(true);
       toast({
-        title: "Booking Confirmed!",
-        description: "We've sent a confirmation email with all the details.",
+        title: t.bookingCalendar.toastSuccessTitle,
+        description: t.bookingCalendar.toastSuccessDescription,
       });
       form.reset();
       queryClient.invalidateQueries({ queryKey: ["/api/bookings/availability"] });
@@ -81,10 +83,10 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
     onError: (error: any) => {
       const isConflict = error?.response?.status === 409;
       toast({
-        title: isConflict ? "Time Slot Unavailable" : "Something went wrong",
+        title: isConflict ? t.bookingCalendar.toastConflictTitle : t.bookingCalendar.toastErrorTitle,
         description: isConflict 
-          ? "This time slot was just booked. Please select a different time." 
-          : "Please try again or contact us directly.",
+          ? t.bookingCalendar.toastConflictDescription 
+          : t.bookingCalendar.toastErrorDescription,
         variant: "destructive",
       });
       
@@ -130,10 +132,10 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
             <DialogHeader>
               <DialogTitle className="font-serif text-2xl text-navy flex items-center gap-2">
                 <CalendarIcon className="w-6 h-6 text-gold" />
-                Book Your Consultation
+                {t.bookingCalendar.title}
               </DialogTitle>
               <DialogDescription className="text-navy/70">
-                Select a date and time for your free consultation. We'll reach out to confirm and prepare for our call.
+                {t.bookingCalendar.description}
               </DialogDescription>
             </DialogHeader>
 
@@ -143,7 +145,7 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                 <div>
                   <h3 className="font-semibold text-navy mb-3 flex items-center gap-2">
                     <CalendarIcon className="w-4 h-4 text-gold" />
-                    Select a Date
+                    {t.bookingCalendar.selectDateLabel}
                   </h3>
                   <Calendar
                     mode="single"
@@ -159,7 +161,7 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                   <div>
                     <h3 className="font-semibold text-navy mb-3 flex items-center gap-2">
                       <Clock className="w-4 h-4 text-gold" />
-                      Available Times
+                      {t.bookingCalendar.selectTimeLabel}
                     </h3>
                     {availability?.availableSlots?.length > 0 ? (
                       <div className="grid grid-cols-3 gap-2">
@@ -180,7 +182,7 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                         ))}
                       </div>
                     ) : (
-                      <p className="text-navy/60 text-sm">No available slots for this date. Please select another date.</p>
+                      <p className="text-navy/60 text-sm">{t.bookingCalendar.noTimesAvailable}</p>
                     )}
                   </div>
                 )}
@@ -195,10 +197,10 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                       name="name"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-navy font-semibold">Full Name *</FormLabel>
+                          <FormLabel className="text-navy font-semibold">{t.bookingCalendar.nameLabel} *</FormLabel>
                           <FormControl>
                             <Input 
-                              placeholder="John Doe" 
+                              placeholder={t.bookingCalendar.namePlaceholder} 
                               {...field} 
                               className="border-navy/20 focus:border-gold"
                               data-testid="input-booking-name"
@@ -214,11 +216,11 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                       name="email"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-navy font-semibold">Email Address *</FormLabel>
+                          <FormLabel className="text-navy font-semibold">{t.bookingCalendar.emailLabel} *</FormLabel>
                           <FormControl>
                             <Input 
                               type="email" 
-                              placeholder="john@example.com" 
+                              placeholder={t.bookingCalendar.emailPlaceholder} 
                               {...field} 
                               className="border-navy/20 focus:border-gold"
                               data-testid="input-booking-email"
@@ -234,11 +236,11 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                       name="phone"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-navy font-semibold">Phone Number</FormLabel>
+                          <FormLabel className="text-navy font-semibold">{t.bookingCalendar.phoneLabel}</FormLabel>
                           <FormControl>
                             <Input 
                               type="tel" 
-                              placeholder="+1 (555) 000-0000" 
+                              placeholder={t.bookingCalendar.phonePlaceholder} 
                               {...field} 
                               className="border-navy/20 focus:border-gold"
                               data-testid="input-booking-phone"
@@ -254,19 +256,19 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                       name="serviceInterest"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-navy font-semibold">Service Interest *</FormLabel>
+                          <FormLabel className="text-navy font-semibold">{t.bookingCalendar.serviceLabel} *</FormLabel>
                           <Select onValueChange={field.onChange} value={field.value}>
                             <FormControl>
                               <SelectTrigger className="border-navy/20 focus:border-gold" data-testid="select-booking-service">
-                                <SelectValue placeholder="Select a service" />
+                                <SelectValue placeholder={t.bookingCalendar.servicePlaceholder} />
                               </SelectTrigger>
                             </FormControl>
                             <SelectContent>
-                              <SelectItem value="medical-tourism">Medical Tourism</SelectItem>
-                              <SelectItem value="romantic-escapes">Romantic Escapes</SelectItem>
-                              <SelectItem value="solo-adventures">Solo Adventures</SelectItem>
-                              <SelectItem value="caribbean-immersion">Caribbean Cultural Immersion</SelectItem>
-                              <SelectItem value="other">Other / Not Sure</SelectItem>
+                              <SelectItem value="medical-tourism">{t.consultation.serviceOptions.medical}</SelectItem>
+                              <SelectItem value="romantic-escapes">{t.consultation.serviceOptions.romantic}</SelectItem>
+                              <SelectItem value="solo-adventures">{t.consultation.serviceOptions.solo}</SelectItem>
+                              <SelectItem value="caribbean-immersion">{t.consultation.serviceOptions.caribbean}</SelectItem>
+                              <SelectItem value="other">{t.consultation.serviceOptions.other}</SelectItem>
                             </SelectContent>
                           </Select>
                           <FormMessage />
@@ -279,10 +281,10 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                       name="message"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel className="text-navy font-semibold">Message (Optional)</FormLabel>
+                          <FormLabel className="text-navy font-semibold">{t.bookingCalendar.messageLabel}</FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Any specific questions or requests..."
+                              placeholder={t.bookingCalendar.messagePlaceholder}
                               className="min-h-[80px] border-navy/20 focus:border-gold resize-none"
                               {...field}
                               data-testid="input-booking-message"
@@ -302,10 +304,10 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                       {mutation.isPending ? (
                         <>
                           <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                          Confirming...
+                          {t.bookingCalendar.submitting}
                         </>
                       ) : (
-                        "Confirm Booking"
+                        t.bookingCalendar.submitButton
                       )}
                     </Button>
 
@@ -320,16 +322,16 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
         ) : (
           <div className="text-center py-12" data-testid="booking-success-message">
             <CheckCircle2 className="w-20 h-20 text-gold mx-auto mb-6" />
-            <h3 className="font-serif text-3xl text-navy mb-3">Booking Confirmed!</h3>
+            <h3 className="font-serif text-3xl text-navy mb-3">{t.bookingCalendar.successTitle}</h3>
             <p className="text-navy/70 text-lg mb-6">
-              We've sent a confirmation email with all the details. We look forward to speaking with you!
+              {t.bookingCalendar.successMessage}
             </p>
             <Button
               onClick={handleClose}
               className="bg-navy hover:bg-navy/90 text-white"
               data-testid="button-booking-close"
             >
-              Close
+              {t.bookingCalendar.closeButton}
             </Button>
           </div>
         )}

@@ -104,6 +104,96 @@ export interface Translations {
     tagline: string;
     copyright: string;
   };
+  waitlist: {
+    eyebrow: string;
+    headline: string;
+    description: string;
+    benefit1Title: string;
+    benefit1Description: string;
+    benefit2Title: string;
+    benefit2Description: string;
+    benefit3Title: string;
+    benefit3Description: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    destinationLabel: string;
+    destinationPlaceholder: string;
+    travelPeriodLabel: string;
+    travelPeriodPlaceholder: string;
+    submitButton: string;
+    submitting: string;
+    privacyNote: string;
+    successTitle: string;
+    successMessage: string;
+    toastSuccessTitle: string;
+    toastSuccessDescription: string;
+    toastErrorTitle: string;
+    toastErrorDescription: string;
+    destinations: {
+      jamaica: string;
+      barbados: string;
+      trinidad: string;
+      stLucia: string;
+      dominica: string;
+      grenada: string;
+      any: string;
+    };
+    periods: {
+      oneToThree: string;
+      threeToSix: string;
+      sixToTwelve: string;
+      twelvePlus: string;
+      flexible: string;
+    };
+  };
+  guideDownload: {
+    title: string;
+    description: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    submitButton: string;
+    submitting: string;
+    privacyNote: string;
+    successTitle: string;
+    successMessage: string;
+    closeButton: string;
+    toastSuccessTitle: string;
+    toastSuccessDescription: string;
+    toastErrorTitle: string;
+    toastErrorDescription: string;
+  };
+  bookingCalendar: {
+    title: string;
+    description: string;
+    selectDateLabel: string;
+    selectTimeLabel: string;
+    noTimesAvailable: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    phoneLabel: string;
+    phonePlaceholder: string;
+    serviceLabel: string;
+    servicePlaceholder: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    submitButton: string;
+    submitting: string;
+    successTitle: string;
+    successMessage: string;
+    closeButton: string;
+    toastSuccessTitle: string;
+    toastSuccessDescription: string;
+    toastErrorTitle: string;
+    toastErrorDescription: string;
+    toastConflictTitle: string;
+    toastConflictDescription: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -211,6 +301,96 @@ export const translations: Record<Language, Translations> = {
       tagline: 'Your Cultural Bridge to the World',
       copyright: '© 2025 Travelbuff Concierge Services. All rights reserved.',
     },
+    waitlist: {
+      eyebrow: 'BE THE FIRST TO KNOW',
+      headline: 'Join Our Exclusive Travel Waitlist',
+      description: 'Get early access to new Caribbean destinations, limited-time offers, and curated cultural experiences. Plus, receive insider travel tips and destination guides delivered straight to your inbox.',
+      benefit1Title: 'Early Bird Pricing',
+      benefit1Description: 'Save up to 25% on new destination launches',
+      benefit2Title: 'Exclusive Access',
+      benefit2Description: 'Private tours and limited-availability experiences',
+      benefit3Title: 'Monthly Insights',
+      benefit3Description: 'Travel guides, cultural tips, and destination spotlights',
+      nameLabel: 'Full Name',
+      namePlaceholder: 'John Doe',
+      emailLabel: 'Email Address',
+      emailPlaceholder: 'john@example.com',
+      destinationLabel: 'Interested Destination',
+      destinationPlaceholder: 'Select a destination',
+      travelPeriodLabel: 'When are you planning to travel?',
+      travelPeriodPlaceholder: 'Select timeframe',
+      submitButton: 'Join the Waitlist',
+      submitting: 'Joining...',
+      privacyNote: '* Required fields. We respect your privacy and will never share your information.',
+      successTitle: "You're on the list!",
+      successMessage: "We'll keep you updated with the latest travel opportunities.",
+      toastSuccessTitle: "You're on the list!",
+      toastSuccessDescription: "We'll notify you about new destinations and exclusive offers.",
+      toastErrorTitle: "Something went wrong",
+      toastErrorDescription: "Please try again or contact us directly.",
+      destinations: {
+        jamaica: 'Jamaica',
+        barbados: 'Barbados',
+        trinidad: 'Trinidad & Tobago',
+        stLucia: 'St. Lucia',
+        dominica: 'Dominica',
+        grenada: 'Grenada',
+        any: 'Open to any destination',
+      },
+      periods: {
+        oneToThree: 'Within 1-3 months',
+        threeToSix: '3-6 months',
+        sixToTwelve: '6-12 months',
+        twelvePlus: '12+ months',
+        flexible: 'Flexible / Just exploring',
+      },
+    },
+    guideDownload: {
+      title: 'Download Free Caribbean Guide',
+      description: 'Get our exclusive cultural immersion guide with insider tips, hidden gems, and authentic experiences across the Caribbean.',
+      nameLabel: 'Name (Optional)',
+      namePlaceholder: 'Your name',
+      emailLabel: 'Email Address',
+      emailPlaceholder: 'your@email.com',
+      submitButton: 'Download Guide',
+      submitting: 'Downloading...',
+      privacyNote: 'We respect your privacy. Unsubscribe anytime.',
+      successTitle: 'Guide Downloaded!',
+      successMessage: 'Check your email for the complete guide and exclusive travel tips.',
+      closeButton: 'Close',
+      toastSuccessTitle: 'Success!',
+      toastSuccessDescription: "Your guide is downloading now. Check your email for more travel tips!",
+      toastErrorTitle: 'Something went wrong',
+      toastErrorDescription: 'Please try again or contact us directly.',
+    },
+    bookingCalendar: {
+      title: 'Book Your Free Consultation',
+      description: 'Choose a convenient date and time to discuss your travel dreams with our expert team.',
+      selectDateLabel: 'Select Date',
+      selectTimeLabel: 'Select Time',
+      noTimesAvailable: 'No times available for this date. Please select another date.',
+      nameLabel: 'Full Name',
+      namePlaceholder: 'Your name',
+      emailLabel: 'Email Address',
+      emailPlaceholder: 'your@email.com',
+      phoneLabel: 'Phone Number',
+      phonePlaceholder: '+1 (555) 123-4567',
+      serviceLabel: 'Service Interest',
+      servicePlaceholder: 'Select a service',
+      messageLabel: 'Message (Optional)',
+      messagePlaceholder: 'Tell us about your travel goals...',
+      submitButton: 'Confirm Booking',
+      submitting: 'Booking...',
+      successTitle: 'Booking Confirmed!',
+      successMessage: "We've sent a confirmation email with all the details. We look forward to speaking with you!",
+      closeButton: 'Close',
+      toastSuccessTitle: 'Booking Confirmed!',
+      toastSuccessDescription: "We've sent a confirmation email with all the details.",
+      toastErrorTitle: 'Something went wrong',
+      toastErrorDescription: 'Please try again or contact us directly.',
+      toastConflictTitle: 'Time Slot Unavailable',
+      toastConflictDescription: 'This time slot was just booked. Please select a different time.',
+    },
   },
   es: {
     nav: {
@@ -316,6 +496,96 @@ export const translations: Record<Language, Translations> = {
       tagline: 'Tu Puente Cultural al Mundo',
       copyright: '© 2025 Travelbuff Concierge Services. Todos los derechos reservados.',
     },
+    waitlist: {
+      eyebrow: 'SÉ EL PRIMERO EN SABER',
+      headline: 'Únete a Nuestra Lista de Espera Exclusiva',
+      description: 'Obtén acceso anticipado a nuevos destinos caribeños, ofertas por tiempo limitado y experiencias culturales curadas. Además, recibe consejos de viaje y guías de destinos directamente en tu bandeja de entrada.',
+      benefit1Title: 'Precios Anticipados',
+      benefit1Description: 'Ahorra hasta un 25% en lanzamientos de nuevos destinos',
+      benefit2Title: 'Acceso Exclusivo',
+      benefit2Description: 'Tours privados y experiencias de disponibilidad limitada',
+      benefit3Title: 'Perspectivas Mensuales',
+      benefit3Description: 'Guías de viaje, consejos culturales y destacados de destinos',
+      nameLabel: 'Nombre Completo',
+      namePlaceholder: 'Juan Pérez',
+      emailLabel: 'Correo Electrónico',
+      emailPlaceholder: 'juan@ejemplo.com',
+      destinationLabel: 'Destino de Interés',
+      destinationPlaceholder: 'Selecciona un destino',
+      travelPeriodLabel: '¿Cuándo planeas viajar?',
+      travelPeriodPlaceholder: 'Selecciona período',
+      submitButton: 'Unirse a la Lista',
+      submitting: 'Uniéndose...',
+      privacyNote: '* Campos obligatorios. Respetamos tu privacidad y nunca compartiremos tu información.',
+      successTitle: '¡Estás en la lista!',
+      successMessage: 'Te mantendremos actualizado con las últimas oportunidades de viaje.',
+      toastSuccessTitle: '¡Estás en la lista!',
+      toastSuccessDescription: 'Te notificaremos sobre nuevos destinos y ofertas exclusivas.',
+      toastErrorTitle: 'Algo salió mal',
+      toastErrorDescription: 'Por favor intenta de nuevo o contáctanos directamente.',
+      destinations: {
+        jamaica: 'Jamaica',
+        barbados: 'Barbados',
+        trinidad: 'Trinidad y Tobago',
+        stLucia: 'Santa Lucía',
+        dominica: 'Dominica',
+        grenada: 'Granada',
+        any: 'Abierto a cualquier destino',
+      },
+      periods: {
+        oneToThree: 'Dentro de 1-3 meses',
+        threeToSix: '3-6 meses',
+        sixToTwelve: '6-12 meses',
+        twelvePlus: '12+ meses',
+        flexible: 'Flexible / Solo explorando',
+      },
+    },
+    guideDownload: {
+      title: 'Descarga la Guía Caribeña Gratis',
+      description: 'Obtén nuestra guía exclusiva de inmersión cultural con consejos internos, joyas ocultas y experiencias auténticas en todo el Caribe.',
+      nameLabel: 'Nombre (Opcional)',
+      namePlaceholder: 'Tu nombre',
+      emailLabel: 'Correo Electrónico',
+      emailPlaceholder: 'tu@correo.com',
+      submitButton: 'Descargar Guía',
+      submitting: 'Descargando...',
+      privacyNote: 'Respetamos tu privacidad. Cancela en cualquier momento.',
+      successTitle: '¡Guía Descargada!',
+      successMessage: 'Revisa tu correo para la guía completa y consejos de viaje exclusivos.',
+      closeButton: 'Cerrar',
+      toastSuccessTitle: '¡Éxito!',
+      toastSuccessDescription: 'Tu guía se está descargando ahora. ¡Revisa tu correo para más consejos de viaje!',
+      toastErrorTitle: 'Algo salió mal',
+      toastErrorDescription: 'Por favor intenta de nuevo o contáctanos directamente.',
+    },
+    bookingCalendar: {
+      title: 'Reserva Tu Consulta Gratuita',
+      description: 'Elige una fecha y hora conveniente para discutir tus sueños de viaje con nuestro equipo experto.',
+      selectDateLabel: 'Seleccionar Fecha',
+      selectTimeLabel: 'Seleccionar Hora',
+      noTimesAvailable: 'No hay horarios disponibles para esta fecha. Por favor selecciona otra fecha.',
+      nameLabel: 'Nombre Completo',
+      namePlaceholder: 'Tu nombre',
+      emailLabel: 'Correo Electrónico',
+      emailPlaceholder: 'tu@correo.com',
+      phoneLabel: 'Número de Teléfono',
+      phonePlaceholder: '+34 612 345 678',
+      serviceLabel: 'Interés en Servicio',
+      servicePlaceholder: 'Selecciona un servicio',
+      messageLabel: 'Mensaje (Opcional)',
+      messagePlaceholder: 'Cuéntanos sobre tus objetivos de viaje...',
+      submitButton: 'Confirmar Reserva',
+      submitting: 'Reservando...',
+      successTitle: '¡Reserva Confirmada!',
+      successMessage: 'Hemos enviado un correo de confirmación con todos los detalles. ¡Esperamos hablar contigo!',
+      closeButton: 'Cerrar',
+      toastSuccessTitle: '¡Reserva Confirmada!',
+      toastSuccessDescription: 'Hemos enviado un correo de confirmación con todos los detalles.',
+      toastErrorTitle: 'Algo salió mal',
+      toastErrorDescription: 'Por favor intenta de nuevo o contáctanos directamente.',
+      toastConflictTitle: 'Horario No Disponible',
+      toastConflictDescription: 'Este horario acaba de ser reservado. Por favor selecciona un horario diferente.',
+    },
   },
   fr: {
     nav: {
@@ -420,6 +690,96 @@ export const translations: Record<Language, Translations> = {
     footer: {
       tagline: 'Votre Pont Culturel vers le Monde',
       copyright: '© 2025 Travelbuff Concierge Services. Tous droits réservés.',
+    },
+    waitlist: {
+      eyebrow: 'SOYEZ LE PREMIER À SAVOIR',
+      headline: 'Rejoignez Notre Liste d\'Attente Exclusive',
+      description: 'Accédez en avant-première aux nouvelles destinations caribéennes, offres à durée limitée et expériences culturelles curées. De plus, recevez des conseils de voyage et des guides de destination directement dans votre boîte mail.',
+      benefit1Title: 'Tarifs Anticipés',
+      benefit1Description: 'Économisez jusqu\'à 25% sur les lancements de nouvelles destinations',
+      benefit2Title: 'Accès Exclusif',
+      benefit2Description: 'Tours privés et expériences à disponibilité limitée',
+      benefit3Title: 'Perspectives Mensuelles',
+      benefit3Description: 'Guides de voyage, conseils culturels et destinations vedettes',
+      nameLabel: 'Nom Complet',
+      namePlaceholder: 'Jean Dupont',
+      emailLabel: 'Adresse E-mail',
+      emailPlaceholder: 'jean@exemple.com',
+      destinationLabel: 'Destination d\'Intérêt',
+      destinationPlaceholder: 'Sélectionnez une destination',
+      travelPeriodLabel: 'Quand prévoyez-vous de voyager?',
+      travelPeriodPlaceholder: 'Sélectionnez la période',
+      submitButton: 'Rejoindre la Liste',
+      submitting: 'Inscription...',
+      privacyNote: '* Champs obligatoires. Nous respectons votre vie privée et ne partagerons jamais vos informations.',
+      successTitle: 'Vous êtes sur la liste!',
+      successMessage: 'Nous vous tiendrons au courant des dernières opportunités de voyage.',
+      toastSuccessTitle: 'Vous êtes sur la liste!',
+      toastSuccessDescription: 'Nous vous informerons des nouvelles destinations et offres exclusives.',
+      toastErrorTitle: 'Une erreur s\'est produite',
+      toastErrorDescription: 'Veuillez réessayer ou nous contacter directement.',
+      destinations: {
+        jamaica: 'Jamaïque',
+        barbados: 'Barbade',
+        trinidad: 'Trinité-et-Tobago',
+        stLucia: 'Sainte-Lucie',
+        dominica: 'Dominique',
+        grenada: 'Grenade',
+        any: 'Ouvert à toute destination',
+      },
+      periods: {
+        oneToThree: 'Dans 1-3 mois',
+        threeToSix: '3-6 mois',
+        sixToTwelve: '6-12 mois',
+        twelvePlus: '12+ mois',
+        flexible: 'Flexible / Juste explorer',
+      },
+    },
+    guideDownload: {
+      title: 'Télécharger le Guide Caribéen Gratuit',
+      description: 'Obtenez notre guide exclusif d\'immersion culturelle avec des conseils d\'initiés, des joyaux cachés et des expériences authentiques à travers les Caraïbes.',
+      nameLabel: 'Nom (Optionnel)',
+      namePlaceholder: 'Votre nom',
+      emailLabel: 'Adresse E-mail',
+      emailPlaceholder: 'votre@email.com',
+      submitButton: 'Télécharger le Guide',
+      submitting: 'Téléchargement...',
+      privacyNote: 'Nous respectons votre vie privée. Désabonnez-vous à tout moment.',
+      successTitle: 'Guide Téléchargé!',
+      successMessage: 'Consultez votre e-mail pour le guide complet et des conseils de voyage exclusifs.',
+      closeButton: 'Fermer',
+      toastSuccessTitle: 'Succès!',
+      toastSuccessDescription: 'Votre guide est en cours de téléchargement. Consultez votre e-mail pour plus de conseils de voyage!',
+      toastErrorTitle: 'Une erreur s\'est produite',
+      toastErrorDescription: 'Veuillez réessayer ou nous contacter directement.',
+    },
+    bookingCalendar: {
+      title: 'Réservez Votre Consultation Gratuite',
+      description: 'Choisissez une date et une heure convenables pour discuter de vos rêves de voyage avec notre équipe d\'experts.',
+      selectDateLabel: 'Sélectionner la Date',
+      selectTimeLabel: 'Sélectionner l\'Heure',
+      noTimesAvailable: 'Aucun horaire disponible pour cette date. Veuillez sélectionner une autre date.',
+      nameLabel: 'Nom Complet',
+      namePlaceholder: 'Votre nom',
+      emailLabel: 'Adresse E-mail',
+      emailPlaceholder: 'votre@email.com',
+      phoneLabel: 'Numéro de Téléphone',
+      phonePlaceholder: '+33 6 12 34 56 78',
+      serviceLabel: 'Intérêt pour le Service',
+      servicePlaceholder: 'Sélectionnez un service',
+      messageLabel: 'Message (Optionnel)',
+      messagePlaceholder: 'Parlez-nous de vos objectifs de voyage...',
+      submitButton: 'Confirmer la Réservation',
+      submitting: 'Réservation...',
+      successTitle: 'Réservation Confirmée!',
+      successMessage: 'Nous avons envoyé un e-mail de confirmation avec tous les détails. Nous avons hâte de vous parler!',
+      closeButton: 'Fermer',
+      toastSuccessTitle: 'Réservation Confirmée!',
+      toastSuccessDescription: 'Nous avons envoyé un e-mail de confirmation avec tous les détails.',
+      toastErrorTitle: 'Une erreur s\'est produite',
+      toastErrorDescription: 'Veuillez réessayer ou nous contacter directement.',
+      toastConflictTitle: 'Créneau Horaire Indisponible',
+      toastConflictDescription: 'Ce créneau horaire vient d\'être réservé. Veuillez sélectionner un horaire différent.',
     },
   },
 };

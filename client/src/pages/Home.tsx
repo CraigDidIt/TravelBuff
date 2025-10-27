@@ -7,12 +7,14 @@ import { PartnerShowcase } from "@/components/PartnerShowcase";
 import { WaitlistSection } from "@/components/WaitlistSection";
 import { ConsultationForm } from "@/components/ConsultationForm";
 import { Footer } from "@/components/Footer";
+import { useLanguage } from "@/contexts/LanguageContext";
 import medicalImage from "@assets/stock_images/medical_consultation_4bfd952c.jpg";
 import romanticImage from "@assets/stock_images/couple_romantic_dinn_e4b7c36e.jpg";
 import caribbeanImage from "@assets/stock_images/caribbean_beach_trop_c77c5893.jpg";
 import { useEffect } from "react";
 
 export default function Home() {
+  const { t } = useLanguage();
   useEffect(() => {
     document.title = "Travelbuff Concierge Services | Premium Travel Experiences & Cultural Immersion";
     
@@ -55,19 +57,19 @@ export default function Home() {
       <div id="services">
         <ServiceSection
           sectionNumber="01"
-          eyebrow="MEDICAL TRAVEL CONCIERGE"
+          eyebrow={t.services.medical.eyebrow}
           eyebrowColor="navy"
-          headline={["WORLD-CLASS", "CARE", "", "with complete", "peace of mind"]}
-          body="Access JCI-accredited medical facilities in Colombia, Costa Rica, and Mexico—for a fraction of Caribbean costs. We coordinate every detail: pre-screened surgeons, appointments, accommodations, transportation, translation, and post-procedure support."
+          headline={t.services.medical.headline}
+          body={t.services.medical.body}
           features={[
-            "Pre-screened JCI-accredited facilities across Latin America",
-            "Complete coordination: medical, travel, lodging & cultural support",
-            "Post-procedure recovery assistance and follow-up care",
-            "Transparent pricing with no hidden fees or surprises",
+            t.services.medical.feature1,
+            t.services.medical.feature2,
+            t.services.medical.feature3,
+            t.services.medical.feature4,
           ]}
-          ctaText="Explore Medical Tourism →"
+          ctaText={t.services.medical.cta}
           ctaLink="/medical-tourism"
-          trustBadge="🏥 25+ Vetted Medical Partners"
+          trustBadge={t.services.medical.badge}
           image={medicalImage}
           imageAlt="Medical consultation in modern facility"
           imagePosition="right"
@@ -76,19 +78,19 @@ export default function Home() {
 
         <ServiceSection
           sectionNumber="02"
-          eyebrow="CURATED EXPERIENCES"
+          eyebrow={t.services.romantic.eyebrow}
           eyebrowColor="coral"
-          headline={["FROM", "FIRST-CLASS", "ROMANCE", "", "to unforgettable", "solo journeys"]}
-          body="Whether you're celebrating love or embracing adventure alone, we design itineraries that reflect your unique personality. Hidden gems. Local experiences. Authentic cultural moments across Europe, Latin America, and beyond."
+          headline={t.services.romantic.headline}
+          body={t.services.romantic.body}
           features={[
-            "Personalized itineraries matching your exact travel style",
-            "Boutique accommodations and authentic local experiences",
-            "Off-the-beaten-path destinations and cultural immersion",
-            "Solo-friendly or romance-optimized trip design",
+            t.services.romantic.feature1,
+            t.services.romantic.feature2,
+            t.services.romantic.feature3,
+            t.services.romantic.feature4,
           ]}
-          ctaText="Plan Your Getaway →"
+          ctaText={t.services.romantic.cta}
           ctaLink="/romantic-solo"
-          trustBadge="🌍 Europe • Latin America • Caribbean"
+          trustBadge={t.services.romantic.badge}
           image={romanticImage}
           imageAlt="Romantic couple dining experience"
           imagePosition="left"
@@ -97,19 +99,19 @@ export default function Home() {
 
         <ServiceSection
           sectionNumber="03"
-          eyebrow="INBOUND EXPERIENCES"
+          eyebrow={t.services.caribbean.eyebrow}
           eyebrowColor="teal"
-          headline={["DISCOVER", "CARIBBEAN", "PARADISE", "", "through local eyes"]}
-          body="For European and Latin American travelers seeking authenticity beyond resorts. Live like a native with vetted local hosts, traditional cuisine experiences, artisan workshops, and hidden destinations across Barbados, Trinidad, St. Lucia, Grenada, and Jamaica."
+          headline={t.services.caribbean.headline}
+          body={t.services.caribbean.body}
           features={[
-            '"Live Like a Native" experiences with trusted local guides',
-            "Traditional cuisine, artisan workshops & cultural activities",
-            "Off-resort destinations showcasing authentic Caribbean life",
-            "Multilingual support for seamless cultural exchange",
+            t.services.caribbean.feature1,
+            t.services.caribbean.feature2,
+            t.services.caribbean.feature3,
+            t.services.caribbean.feature4,
           ]}
-          ctaText="Experience Caribbean Culture →"
+          ctaText={t.services.caribbean.cta}
           ctaLink="/caribbean-immersion"
-          trustBadge="🏝️ 5 Caribbean Islands • Authentic Experiences"
+          trustBadge={t.services.caribbean.badge}
           image={caribbeanImage}
           imageAlt="Caribbean beach paradise"
           imagePosition="right"

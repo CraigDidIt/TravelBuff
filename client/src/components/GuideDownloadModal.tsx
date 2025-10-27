@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { insertEmailLeadSchema, type InsertEmailLead } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -30,6 +31,7 @@ interface GuideDownloadModalProps {
 }
 
 export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps) {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -49,15 +51,15 @@ export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps)
     onSuccess: () => {
       setIsSubmitted(true);
       toast({
-        title: "Success!",
-        description: "Your guide is downloading now. Check your email for more travel tips!",
+        title: t.guideDownload.toastSuccessTitle,
+        description: t.guideDownload.toastSuccessDescription,
       });
       form.reset();
     },
     onError: () => {
       toast({
-        title: "Something went wrong",
-        description: "Please try again or contact us directly.",
+        title: t.guideDownload.toastErrorTitle,
+        description: t.guideDownload.toastErrorDescription,
         variant: "destructive",
       });
     },
@@ -80,10 +82,10 @@ export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps)
             <DialogHeader>
               <DialogTitle className="font-serif text-2xl text-navy flex items-center gap-2">
                 <Download className="w-6 h-6 text-gold" />
-                Download Free Caribbean Guide
+                {t.guideDownload.title}
               </DialogTitle>
               <DialogDescription className="text-navy/70">
-                Get our exclusive cultural immersion guide with insider tips, hidden gems, and authentic experiences across the Caribbean.
+                {t.guideDownload.description}
               </DialogDescription>
             </DialogHeader>
 
@@ -94,10 +96,10 @@ export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps)
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-navy font-semibold">Name (Optional)</FormLabel>
+                      <FormLabel className="text-navy font-semibold">{t.guideDownload.nameLabel}</FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="Your name" 
+                          placeholder={t.guideDownload.namePlaceholder} 
                           {...field} 
                           className="border-navy/20 focus:border-gold"
                           data-testid="input-guide-name"
@@ -113,11 +115,11 @@ export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps)
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-navy font-semibold">Email Address *</FormLabel>
+                      <FormLabel className="text-navy font-semibold">{t.guideDownload.emailLabel} *</FormLabel>
                       <FormControl>
                         <Input 
                           type="email" 
-                          placeholder="your@email.com" 
+                          placeholder={t.guideDownload.emailPlaceholder} 
                           {...field} 
                           className="border-navy/20 focus:border-gold"
                           data-testid="input-guide-email"
@@ -137,18 +139,18 @@ export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps)
                   {mutation.isPending ? (
                     <>
                       <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                      Downloading...
+                      {t.guideDownload.submitting}
                     </>
                   ) : (
                     <>
                       <Download className="mr-2 h-4 w-4" />
-                      Download Guide
+                      {t.guideDownload.submitButton}
                     </>
                   )}
                 </Button>
 
                 <p className="text-xs text-navy/60 text-center">
-                  We respect your privacy. Unsubscribe anytime.
+                  {t.guideDownload.privacyNote}
                 </p>
               </form>
             </Form>
@@ -156,16 +158,16 @@ export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps)
         ) : (
           <div className="text-center py-8" data-testid="guide-success-message">
             <CheckCircle2 className="w-16 h-16 text-gold mx-auto mb-4" />
-            <h3 className="font-serif text-2xl text-navy mb-2">Guide Downloaded!</h3>
+            <h3 className="font-serif text-2xl text-navy mb-2">{t.guideDownload.successTitle}</h3>
             <p className="text-navy/70 mb-6">
-              Check your email for the complete guide and exclusive travel tips.
+              {t.guideDownload.successMessage}
             </p>
             <Button
               onClick={handleClose}
               className="bg-navy hover:bg-navy/90 text-white"
               data-testid="button-guide-close"
             >
-              Close
+              {t.guideDownload.closeButton}
             </Button>
           </div>
         )}

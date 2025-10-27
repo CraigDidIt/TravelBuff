@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Stat {
   number: string;
@@ -7,30 +8,31 @@ interface Stat {
 }
 
 export function StatsSection() {
+  const { t } = useLanguage();
   const [isVisible, setIsVisible] = useState(false);
   const [counts, setCounts] = useState({ stat1: 0, stat2: 0, stat3: 0, stat4: 0 });
   const sectionRef = useRef<HTMLDivElement>(null);
 
   const stats: Stat[] = [
     {
-      number: "25+",
-      label: "VETTED PARTNERS",
-      description: "Medical facilities, hotels & cultural guides",
+      number: "15+",
+      label: t.stats.stat1Label,
+      description: "",
     },
     {
       number: "12",
-      label: "DESTINATIONS",
-      description: "Caribbean, Latin America & Europe",
+      label: t.stats.stat2Label,
+      description: "",
     },
     {
       number: "3",
-      label: "LANGUAGES",
-      description: "English, Spanish & French fluency",
+      label: t.stats.stat3Label,
+      description: "",
     },
     {
-      number: "100%",
-      label: "PERSONALIZED",
-      description: "Every journey uniquely crafted for you",
+      number: "98%",
+      label: t.stats.stat4Label,
+      description: "",
     },
   ];
 
@@ -59,10 +61,10 @@ export function StatsSection() {
     const interval = duration / steps;
 
     const targets = {
-      stat1: 25,
+      stat1: 15,
       stat2: 12,
       stat3: 3,
-      stat4: 100,
+      stat4: 98,
     };
 
     let step = 0;
@@ -96,7 +98,7 @@ export function StatsSection() {
           }`}
           data-testid="text-eyebrow-stats"
         >
-          TRUSTED CONNECTIONS ACROSS CONTINENTS
+          {t.stats.eyebrow}
         </p>
 
         {/* Stats Grid */}
@@ -119,24 +121,29 @@ export function StatsSection() {
               <h3 className="font-sans font-bold text-navy text-sm tracking-wider mb-2">
                 {stat.label}
               </h3>
-              <p className="text-navy/60 text-sm leading-relaxed max-w-[200px] mx-auto">
-                {stat.description}
-              </p>
             </div>
           ))}
         </div>
 
         {/* Supporting Statement */}
-        <p 
-          className={`text-center text-navy/80 text-xl lg:text-2xl leading-relaxed max-w-3xl mx-auto transition-all duration-700 delay-500 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
-          data-testid="text-supporting-statement"
-        >
-          Your journey is backed by carefully cultivated relationships with 
-          JCI-accredited facilities, boutique accommodations, and authentic 
-          cultural guides across three continents.
-        </p>
+        <div className="text-center mt-16">
+          <h3 
+            className={`font-serif text-3xl lg:text-4xl text-navy mb-4 transition-all duration-700 delay-300 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+            data-testid="heading-stats"
+          >
+            {t.stats.headline}
+          </h3>
+          <p 
+            className={`text-navy/80 text-lg lg:text-xl leading-relaxed max-w-3xl mx-auto transition-all duration-700 delay-500 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
+            data-testid="text-supporting-statement"
+          >
+            {t.stats.subheadline}
+          </p>
+        </div>
       </div>
     </section>
   );

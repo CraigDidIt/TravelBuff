@@ -1,6 +1,8 @@
 import { Globe, Mail, Phone } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export function Footer() {
+  const { t } = useLanguage();
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -15,8 +17,7 @@ export function Footer() {
               Travelbuff
             </h3>
             <p className="text-white/70 text-sm leading-relaxed mb-4">
-              Your cultural bridge to the world. Curating authentic travel experiences
-              across the Caribbean, Latin America, and Europe since 2020.
+              {t.footer.tagline}
             </p>
             <div className="flex items-center gap-2 text-white/60 text-sm">
               <Globe className="w-4 h-4" />
@@ -101,7 +102,7 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/50 text-sm">
-            © {new Date().getFullYear()} Travelbuff Concierge Services. All rights reserved.
+            {t.footer.copyright.replace('2025', new Date().getFullYear().toString())}
           </p>
           <div className="flex gap-6 text-white/50 text-sm">
             <button 

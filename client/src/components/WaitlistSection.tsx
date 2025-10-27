@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { insertWaitlistSchema, type InsertWaitlist } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -25,6 +26,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Loader2, Bell } from "lucide-react";
 
 export function WaitlistSection() {
+  const { t } = useLanguage();
   const { toast } = useToast();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -45,16 +47,16 @@ export function WaitlistSection() {
     onSuccess: () => {
       setIsSubmitted(true);
       toast({
-        title: "You're on the list!",
-        description: "We'll notify you about new destinations and exclusive offers.",
+        title: t.waitlist.toastSuccessTitle,
+        description: t.waitlist.toastSuccessDescription,
       });
       form.reset();
       setTimeout(() => setIsSubmitted(false), 5000);
     },
     onError: () => {
       toast({
-        title: "Something went wrong",
-        description: "Please try again or contact us directly.",
+        title: t.waitlist.toastErrorTitle,
+        description: t.waitlist.toastErrorDescription,
         variant: "destructive",
       });
     },
@@ -71,36 +73,35 @@ export function WaitlistSection() {
           {/* Left: Content */}
           <div>
             <p className="text-gold uppercase text-sm tracking-[0.15em] font-semibold mb-4" data-testid="text-waitlist-eyebrow">
-              BE THE FIRST TO KNOW
+              {t.waitlist.eyebrow}
             </p>
             <h2 className="font-serif text-4xl lg:text-5xl text-white mb-6" data-testid="heading-waitlist">
-              Join Our Exclusive Travel Waitlist
+              {t.waitlist.headline}
             </h2>
             <p className="text-white/80 text-lg mb-8" data-testid="text-waitlist-description">
-              Get early access to new Caribbean destinations, limited-time offers, and curated cultural experiences. 
-              Plus, receive insider travel tips and destination guides delivered straight to your inbox.
+              {t.waitlist.description}
             </p>
             
             <div className="space-y-4 mb-8">
               <div className="flex items-start gap-3">
                 <Bell className="w-5 h-5 text-gold mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-white font-semibold mb-1">Early Bird Pricing</h3>
-                  <p className="text-white/70">Save up to 25% on new destination launches</p>
+                  <h3 className="text-white font-semibold mb-1">{t.waitlist.benefit1Title}</h3>
+                  <p className="text-white/70">{t.waitlist.benefit1Description}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Bell className="w-5 h-5 text-gold mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-white font-semibold mb-1">Exclusive Access</h3>
-                  <p className="text-white/70">Private tours and limited-availability experiences</p>
+                  <h3 className="text-white font-semibold mb-1">{t.waitlist.benefit2Title}</h3>
+                  <p className="text-white/70">{t.waitlist.benefit2Description}</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <Bell className="w-5 h-5 text-gold mt-1 flex-shrink-0" />
                 <div>
-                  <h3 className="text-white font-semibold mb-1">Monthly Insights</h3>
-                  <p className="text-white/70">Travel guides, cultural tips, and destination spotlights</p>
+                  <h3 className="text-white font-semibold mb-1">{t.waitlist.benefit3Title}</h3>
+                  <p className="text-white/70">{t.waitlist.benefit3Description}</p>
                 </div>
               </div>
             </div>
@@ -116,10 +117,10 @@ export function WaitlistSection() {
                     name="name"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-navy font-semibold">Full Name *</FormLabel>
+                        <FormLabel className="text-navy font-semibold">{t.waitlist.nameLabel} *</FormLabel>
                         <FormControl>
                           <Input 
-                            placeholder="John Doe" 
+                            placeholder={t.waitlist.namePlaceholder} 
                             {...field} 
                             className="border-navy/20 focus:border-gold"
                             data-testid="input-waitlist-name"
@@ -135,11 +136,11 @@ export function WaitlistSection() {
                     name="email"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-navy font-semibold">Email Address *</FormLabel>
+                        <FormLabel className="text-navy font-semibold">{t.waitlist.emailLabel} *</FormLabel>
                         <FormControl>
                           <Input 
                             type="email" 
-                            placeholder="john@example.com" 
+                            placeholder={t.waitlist.emailPlaceholder} 
                             {...field} 
                             className="border-navy/20 focus:border-gold"
                             data-testid="input-waitlist-email"
@@ -155,21 +156,21 @@ export function WaitlistSection() {
                     name="destination"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-navy font-semibold">Interested Destination</FormLabel>
+                        <FormLabel className="text-navy font-semibold">{t.waitlist.destinationLabel}</FormLabel>
                         <Select onValueChange={field.onChange} value={field.value || undefined}>
                           <FormControl>
                             <SelectTrigger className="border-navy/20 focus:border-gold" data-testid="select-destination">
-                              <SelectValue placeholder="Select a destination" />
+                              <SelectValue placeholder={t.waitlist.destinationPlaceholder} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="jamaica">Jamaica</SelectItem>
-                            <SelectItem value="barbados">Barbados</SelectItem>
-                            <SelectItem value="trinidad-tobago">Trinidad & Tobago</SelectItem>
-                            <SelectItem value="st-lucia">St. Lucia</SelectItem>
-                            <SelectItem value="dominica">Dominica</SelectItem>
-                            <SelectItem value="grenada">Grenada</SelectItem>
-                            <SelectItem value="any">Open to any destination</SelectItem>
+                            <SelectItem value="jamaica">{t.waitlist.destinations.jamaica}</SelectItem>
+                            <SelectItem value="barbados">{t.waitlist.destinations.barbados}</SelectItem>
+                            <SelectItem value="trinidad-tobago">{t.waitlist.destinations.trinidad}</SelectItem>
+                            <SelectItem value="st-lucia">{t.waitlist.destinations.stLucia}</SelectItem>
+                            <SelectItem value="dominica">{t.waitlist.destinations.dominica}</SelectItem>
+                            <SelectItem value="grenada">{t.waitlist.destinations.grenada}</SelectItem>
+                            <SelectItem value="any">{t.waitlist.destinations.any}</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -182,19 +183,19 @@ export function WaitlistSection() {
                     name="travelPeriod"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel className="text-navy font-semibold">When are you planning to travel?</FormLabel>
+                        <FormLabel className="text-navy font-semibold">{t.waitlist.travelPeriodLabel}</FormLabel>
                         <Select onValueChange={field.onChange} value={field.value || undefined}>
                           <FormControl>
                             <SelectTrigger className="border-navy/20 focus:border-gold" data-testid="select-period">
-                              <SelectValue placeholder="Select timeframe" />
+                              <SelectValue placeholder={t.waitlist.travelPeriodPlaceholder} />
                             </SelectTrigger>
                           </FormControl>
                           <SelectContent>
-                            <SelectItem value="1-3-months">Within 1-3 months</SelectItem>
-                            <SelectItem value="3-6-months">3-6 months</SelectItem>
-                            <SelectItem value="6-12-months">6-12 months</SelectItem>
-                            <SelectItem value="12-plus-months">12+ months</SelectItem>
-                            <SelectItem value="flexible">Flexible / Just exploring</SelectItem>
+                            <SelectItem value="1-3-months">{t.waitlist.periods.oneToThree}</SelectItem>
+                            <SelectItem value="3-6-months">{t.waitlist.periods.threeToSix}</SelectItem>
+                            <SelectItem value="6-12-months">{t.waitlist.periods.sixToTwelve}</SelectItem>
+                            <SelectItem value="12-plus-months">{t.waitlist.periods.twelvePlus}</SelectItem>
+                            <SelectItem value="flexible">{t.waitlist.periods.flexible}</SelectItem>
                           </SelectContent>
                         </Select>
                         <FormMessage />
@@ -211,15 +212,15 @@ export function WaitlistSection() {
                     {mutation.isPending ? (
                       <>
                         <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                        Joining...
+                        {t.waitlist.submitting}
                       </>
                     ) : (
-                      "Join the Waitlist"
+                      t.waitlist.submitButton
                     )}
                   </Button>
 
                   <p className="text-navy/60 text-xs text-center">
-                    * Required fields. We respect your privacy and will never share your information.
+                    {t.waitlist.privacyNote}
                   </p>
                 </form>
               </Form>
@@ -230,9 +231,9 @@ export function WaitlistSection() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="font-serif text-2xl text-navy mb-2">You're on the list!</h3>
+                <h3 className="font-serif text-2xl text-navy mb-2">{t.waitlist.successTitle}</h3>
                 <p className="text-navy/70">
-                  We'll keep you updated with the latest travel opportunities.
+                  {t.waitlist.successMessage}
                 </p>
               </div>
             )}

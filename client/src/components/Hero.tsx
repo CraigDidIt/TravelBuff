@@ -1,8 +1,11 @@
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
 import heroImage from "@assets/stock_images/mountain_sunset_trav_de65896a.jpg";
 
 export function Hero() {
+  const { t } = useLanguage();
+  
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
@@ -35,7 +38,7 @@ export function Hero() {
             style={{ animationDelay: "0.2s" }}
             data-testid="text-eyebrow"
           >
-            TRAVELBUFF CONCIERGE SERVICES
+            {t.hero.eyebrow}
           </p>
 
           {/* Main Headline */}
@@ -44,9 +47,7 @@ export function Hero() {
             style={{ animationDelay: "0.5s" }}
             data-testid="heading-hero"
           >
-            Lifelong memories,<br />
-            crafted one journey<br />
-            at a time
+            {t.hero.headline}
           </h1>
 
           {/* Subheadline */}
@@ -55,9 +56,7 @@ export function Hero() {
             style={{ animationDelay: "0.8s" }}
             data-testid="text-subheadline"
           >
-            From medical excellence in Latin America to cultural immersion in Caribbean paradise—
-            we create experiences you'll treasure forever. Because travel should transform you,
-            not just move you.
+            {t.hero.subheadline}
           </p>
 
           {/* CTAs */}
@@ -71,14 +70,14 @@ export function Hero() {
               onClick={scrollToContact}
               data-testid="button-consultation"
             >
-              Book Your Free Consultation
+              {t.hero.primaryCta}
             </Button>
             <button 
               onClick={scrollToServices}
               className="text-white font-sans text-base hover:text-gold transition-colors underline-offset-4 hover:underline"
               data-testid="link-explore"
             >
-              Explore Cultural Experiences →
+              {t.hero.secondaryCta}
             </button>
           </div>
         </div>

@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { insertConsultationSchema, type InsertConsultation } from "@shared/schema";
 import { apiRequest } from "@/lib/queryClient";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -27,6 +28,7 @@ import { Loader2 } from "lucide-react";
 
 export function ConsultationForm() {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const form = useForm<InsertConsultation>({
@@ -73,9 +75,9 @@ export function ConsultationForm() {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h3 className="font-serif text-3xl text-navy mb-4">Thank You!</h3>
+        <h3 className="font-serif text-3xl text-navy mb-4">{t.consultation.successTitle}</h3>
         <p className="text-navy/70 text-lg max-w-md mx-auto mb-8">
-          Your consultation request has been received. One of our travel experts will contact you within 24 hours.
+          {t.consultation.successMessage}
         </p>
         <Button
           onClick={() => setIsSubmitted(false)}
@@ -83,7 +85,7 @@ export function ConsultationForm() {
           className="border-gold text-gold hover:bg-gold hover:text-white"
           data-testid="button-submit-another"
         >
-          Submit Another Request
+          {t.consultation.submitAnother}
         </Button>
       </div>
     );
@@ -95,14 +97,13 @@ export function ConsultationForm() {
         {/* Section Header */}
         <div className="text-center mb-12">
           <p className="text-gold uppercase text-sm tracking-[0.15em] font-semibold mb-4" data-testid="text-eyebrow-consultation">
-            START YOUR JOURNEY
+            {t.consultation.eyebrow}
           </p>
           <h2 className="font-serif text-4xl lg:text-5xl text-white mb-6" data-testid="heading-consultation">
-            Book Your Free Consultation
+            {t.consultation.headline}
           </h2>
           <p className="text-white/80 text-lg lg:text-xl max-w-2xl mx-auto" data-testid="text-consultation-description">
-            Share your travel dreams with us, and we'll craft a personalized journey
-            that exceeds your expectations. No obligation, just possibilities.
+            {t.consultation.subheadline}
           </p>
         </div>
 
@@ -116,10 +117,10 @@ export function ConsultationForm() {
                   name="name"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-navy font-semibold">Full Name *</FormLabel>
+                      <FormLabel className="text-navy font-semibold">{t.consultation.nameLabel} *</FormLabel>
                       <FormControl>
                         <Input 
-                          placeholder="John Doe" 
+                          placeholder={t.consultation.namePlaceholder} 
                           {...field} 
                           className="border-navy/20 focus:border-gold"
                           data-testid="input-name"
@@ -135,11 +136,11 @@ export function ConsultationForm() {
                   name="email"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-navy font-semibold">Email Address *</FormLabel>
+                      <FormLabel className="text-navy font-semibold">{t.consultation.emailLabel} *</FormLabel>
                       <FormControl>
                         <Input 
                           type="email" 
-                          placeholder="john@example.com" 
+                          placeholder={t.consultation.emailPlaceholder} 
                           {...field} 
                           className="border-navy/20 focus:border-gold"
                           data-testid="input-email"
@@ -157,11 +158,11 @@ export function ConsultationForm() {
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-navy font-semibold">Phone Number</FormLabel>
+                      <FormLabel className="text-navy font-semibold">{t.consultation.phoneLabel}</FormLabel>
                       <FormControl>
                         <Input 
                           type="tel" 
-                          placeholder="+1 (555) 000-0000" 
+                          placeholder={t.consultation.phonePlaceholder} 
                           {...field} 
                           className="border-navy/20 focus:border-gold"
                           data-testid="input-phone"
@@ -177,19 +178,19 @@ export function ConsultationForm() {
                   name="serviceInterest"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel className="text-navy font-semibold">Service Interest *</FormLabel>
+                      <FormLabel className="text-navy font-semibold">{t.consultation.serviceLabel} *</FormLabel>
                       <Select onValueChange={field.onChange} value={field.value}>
                         <FormControl>
                           <SelectTrigger className="border-navy/20 focus:border-gold" data-testid="select-service">
-                            <SelectValue placeholder="Select a service" />
+                            <SelectValue placeholder={t.consultation.servicePlaceholder} />
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          <SelectItem value="medical-tourism">Medical Tourism</SelectItem>
-                          <SelectItem value="romantic-escapes">Romantic Escapes</SelectItem>
-                          <SelectItem value="solo-adventures">Solo Adventures</SelectItem>
-                          <SelectItem value="caribbean-immersion">Caribbean Cultural Immersion</SelectItem>
-                          <SelectItem value="other">Other / Not Sure</SelectItem>
+                          <SelectItem value="medical-tourism">{t.consultation.serviceOptions.medical}</SelectItem>
+                          <SelectItem value="romantic-escapes">{t.consultation.serviceOptions.romantic}</SelectItem>
+                          <SelectItem value="solo-adventures">{t.consultation.serviceOptions.solo}</SelectItem>
+                          <SelectItem value="caribbean-immersion">{t.consultation.serviceOptions.caribbean}</SelectItem>
+                          <SelectItem value="other">{t.consultation.serviceOptions.other}</SelectItem>
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -203,10 +204,10 @@ export function ConsultationForm() {
                 name="message"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-navy font-semibold">Tell Us About Your Dream Journey *</FormLabel>
+                    <FormLabel className="text-navy font-semibold">{t.consultation.messageLabel} *</FormLabel>
                     <FormControl>
                       <Textarea
-                        placeholder="Share your travel goals, preferences, timeline, and any specific requests..."
+                        placeholder={t.consultation.messagePlaceholder}
                         className="min-h-[150px] border-navy/20 focus:border-gold resize-none"
                         {...field}
                         data-testid="input-message"
@@ -227,10 +228,10 @@ export function ConsultationForm() {
                   {mutation.isPending ? (
                     <>
                       <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                      Submitting...
+                      {t.consultation.submitting}
                     </>
                   ) : (
-                    "Request Free Consultation"
+                    t.consultation.submitButton
                   )}
                 </Button>
               </div>

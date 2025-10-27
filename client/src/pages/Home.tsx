@@ -65,6 +65,7 @@ export default function Home() {
             "Transparent pricing with no hidden fees or surprises",
           ]}
           ctaText="Explore Medical Tourism →"
+          ctaLink="/medical-tourism"
           trustBadge="🏥 25+ Vetted Medical Partners"
           image={medicalImage}
           imageAlt="Medical consultation in modern facility"
@@ -85,6 +86,7 @@ export default function Home() {
             "Solo-friendly or romance-optimized trip design",
           ]}
           ctaText="Plan Your Getaway →"
+          ctaLink="/romantic-solo"
           trustBadge="🌍 Europe • Latin America • Caribbean"
           image={romanticImage}
           imageAlt="Romantic couple dining experience"
@@ -105,6 +107,7 @@ export default function Home() {
             "Multilingual support for seamless cultural exchange",
           ]}
           ctaText="Experience Caribbean Culture →"
+          ctaLink="/caribbean-immersion"
           trustBadge="🏝️ 5 Caribbean Islands • Authentic Experiences"
           image={caribbeanImage}
           imageAlt="Caribbean beach paradise"

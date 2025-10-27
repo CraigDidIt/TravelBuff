@@ -1,10 +1,19 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Languages } from "lucide-react";
+import { Menu, X, Languages, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useLanguage } from "@/contexts/LanguageContext";
+import type { Language } from "@/lib/translations";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language, setLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,12 +35,18 @@ export function Header() {
   };
 
   const navLinks = [
-    { label: "Home", id: "home" },
-    { label: "Services", id: "services" },
-    { label: "About", id: "stats" },
-    { label: "Partners", id: "partners" },
-    { label: "Contact", id: "contact" },
+    { label: t.nav.home, id: "home" },
+    { label: t.nav.services, id: "services" },
+    { label: t.nav.about, id: "stats" },
+    { label: t.nav.partners, id: "partners" },
+    { label: t.nav.contact, id: "contact" },
   ];
+
+  const languageLabels: Record<Language, string> = {
+    en: 'English',
+    es: 'Español',
+    fr: 'Français',
+  };
 
   return (
     <header
@@ -76,18 +91,38 @@ export function Header() {
               </button>
             ))}
             
-            {/* Language Indicator */}
-            <div
-              className={`flex items-center gap-2 px-3 py-1.5 rounded-md ${
-                isScrolled
-                  ? "bg-cream/50 text-navy/70"
-                  : "bg-white/20 backdrop-blur-sm text-white"
-              }`}
-              data-testid="badge-language-header"
-            >
-              <Languages className="w-4 h-4" />
-              <span className="text-xs font-medium">EN • ES • FR</span>
-            </div>
+            {/* Language Selector */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-md transition-colors ${
+                    isScrolled
+                      ? "bg-cream/50 hover:bg-cream text-navy/70"
+                      : "bg-white/20 backdrop-blur-sm hover:bg-white/30 text-white"
+                  }`}
+                  data-testid="button-language-selector"
+                >
+                  <Languages className="w-4 h-4" />
+                  <span className="text-xs font-medium uppercase">{language}</span>
+                  <ChevronDown className="w-3 h-3" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" data-testid="menu-language-options">
+                {Object.entries(languageLabels).map(([lang, label]) => (
+                  <DropdownMenuItem
+                    key={lang}
+                    onClick={() => setLanguage(lang as Language)}
+                    className={`cursor-pointer ${language === lang ? 'bg-gold/10 font-semibold' : ''}`}
+                    data-testid={`option-language-${lang}`}
+                  >
+                    <span className="flex items-center gap-2">
+                      {label}
+                      {language === lang && <span className="text-gold">✓</span>}
+                    </span>
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {/* CTA Button */}
             <Button
@@ -95,7 +130,7 @@ export function Header() {
               className="bg-gold hover:bg-gold/90 text-white font-semibold shadow-lg transition-all hover:scale-105"
               data-testid="button-header-cta"
             >
-              Book Consultation
+              {t.nav.bookConsultation}
             </Button>
           </nav>
 
@@ -133,9 +168,24 @@ export function Header() {
                 </button>
               ))}
               
-              <div className="flex items-center gap-2 px-4 py-3 text-navy/70">
-                <Languages className="w-4 h-4" />
-                <span className="text-sm font-medium">English • Español • Français</span>
+              <div className="px-4 py-3">
+                <p className="text-xs text-navy/60 mb-2 font-medium">Language / Idioma / Langue</p>
+                <div className="flex gap-2">
+                  {Object.entries(languageLabels).map(([lang, label]) => (
+                    <button
+                      key={lang}
+                      onClick={() => setLanguage(lang as Language)}
+                      className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                        language === lang
+                          ? 'bg-gold text-white'
+                          : 'bg-cream hover:bg-cream/70 text-navy'
+                      }`}
+                      data-testid={`button-mobile-language-${lang}`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               <div className="px-4 pt-2">
@@ -144,7 +194,7 @@ export function Header() {
                   className="w-full bg-gold hover:bg-gold/90 text-white font-semibold"
                   data-testid="button-mobile-cta"
                 >
-                  Book Consultation
+                  {t.nav.bookConsultation}
                 </Button>
               </div>
             </nav>

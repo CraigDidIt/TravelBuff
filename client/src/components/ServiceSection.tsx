@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Check } from "lucide-react";
+import { Link } from "wouter";
 
 interface ServiceSectionProps {
   sectionNumber: string;
@@ -9,6 +10,7 @@ interface ServiceSectionProps {
   body: string;
   features: string[];
   ctaText: string;
+  ctaLink?: string;
   trustBadge: string;
   image: string;
   imageAlt: string;
@@ -25,6 +27,7 @@ export function ServiceSection({
   body,
   features,
   ctaText,
+  ctaLink,
   trustBadge,
   image,
   imageAlt,
@@ -57,10 +60,6 @@ export function ServiceSection({
     coral: "text-coral",
     teal: "text-teal",
   }[eyebrowColor];
-
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
 
   return (
     <section
@@ -142,13 +141,21 @@ export function ServiceSection({
             </ul>
 
             {/* CTA */}
-            <button
-              onClick={scrollToContact}
-              className="text-navy font-sans text-base lg:text-lg font-semibold hover:text-gold transition-colors underline decoration-gold decoration-2 underline-offset-4 mb-6 text-left relative z-10"
-              data-testid={`link-cta-${sectionNumber}`}
-            >
-              {ctaText}
-            </button>
+            {ctaLink ? (
+              <Link href={ctaLink} data-testid={`link-cta-${sectionNumber}`}>
+                <a className="text-navy font-sans text-base lg:text-lg font-semibold hover:text-gold transition-colors underline decoration-gold decoration-2 underline-offset-4 mb-6 inline-block relative z-10">
+                  {ctaText}
+                </a>
+              </Link>
+            ) : (
+              <button
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+                className="text-navy font-sans text-base lg:text-lg font-semibold hover:text-gold transition-colors underline decoration-gold decoration-2 underline-offset-4 mb-6 text-left relative z-10"
+                data-testid={`link-cta-${sectionNumber}`}
+              >
+                {ctaText}
+              </button>
+            )}
 
             {/* Trust Badge */}
             <p className="text-navy/60 text-sm relative z-10" data-testid={`badge-trust-${sectionNumber}`}>

@@ -127,7 +127,7 @@ export const translations: Record<Language, Translations> = {
     valueProposition: {
       eyebrow: 'WHY TRAVELBUFF',
       headline: 'More Than a Travel Agent—Your Global Life Partner',
-      body: 'We don't book trips. We design transformative experiences backed by decades of cultural expertise, multilingual fluency, and a personally-vetted network spanning three continents.',
+      body: "We don't book trips. We design transformative experiences backed by decades of cultural expertise, multilingual fluency, and a personally-vetted network spanning three continents.",
       feature1: 'Trilingual Expertise',
       feature2: 'Vetted Partners',
       feature3: 'Personalized Curation',

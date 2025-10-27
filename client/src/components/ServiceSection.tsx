@@ -142,10 +142,12 @@ export function ServiceSection({
 
             {/* CTA */}
             {ctaLink ? (
-              <Link href={ctaLink} data-testid={`link-cta-${sectionNumber}`}>
-                <a className="text-navy font-sans text-base lg:text-lg font-semibold hover:text-gold transition-colors underline decoration-gold decoration-2 underline-offset-4 mb-6 inline-block relative z-10">
-                  {ctaText}
-                </a>
+              <Link 
+                href={ctaLink} 
+                className="text-navy font-sans text-base lg:text-lg font-semibold hover:text-gold transition-colors underline decoration-gold decoration-2 underline-offset-4 mb-6 inline-block relative z-10"
+                data-testid={`link-cta-${sectionNumber}`}
+              >
+                {ctaText}
               </Link>
             ) : (
               <button

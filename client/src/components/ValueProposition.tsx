@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
-import { Languages, Handshake, Sparkles } from "lucide-react";
+import { Languages, Handshake, Sparkles, Download } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { GuideDownloadModal } from "@/components/GuideDownloadModal";
 import valueImage from "@assets/stock_images/cooking_kitchen_cult_67978ff0.jpg";
 
 export function ValueProposition() {
   const [isVisible, setIsVisible] = useState(false);
+  const [showGuideModal, setShowGuideModal] = useState(false);
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -114,9 +117,35 @@ export function ValueProposition() {
                 </p>
               </div>
             </div>
+
+            {/* Download Guide CTA */}
+            <div className="mt-10 pt-8 border-t border-navy/10">
+              <div className="bg-gold/5 rounded-xl p-6 border border-gold/20">
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                  <div className="flex-1">
+                    <h3 className="font-sans font-bold text-navy text-lg mb-1">
+                      Free Caribbean Travel Guide
+                    </h3>
+                    <p className="text-navy/70 text-sm">
+                      Insider tips, hidden gems & cultural insights from local experts
+                    </p>
+                  </div>
+                  <Button
+                    onClick={() => setShowGuideModal(true)}
+                    className="bg-gold hover:bg-gold/90 text-white font-semibold whitespace-nowrap"
+                    data-testid="button-download-guide"
+                  >
+                    <Download className="w-4 h-4 mr-2" />
+                    Download Guide
+                  </Button>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <GuideDownloadModal isOpen={showGuideModal} onClose={() => setShowGuideModal(false)} />
     </section>
   );
 }

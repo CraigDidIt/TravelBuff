@@ -4,6 +4,7 @@ import { ValueProposition } from "@/components/ValueProposition";
 import { ServiceSection } from "@/components/ServiceSection";
 import { StatsSection } from "@/components/StatsSection";
 import { PartnerShowcase } from "@/components/PartnerShowcase";
+import { WaitlistSection } from "@/components/WaitlistSection";
 import { ConsultationForm } from "@/components/ConsultationForm";
 import { Footer } from "@/components/Footer";
 import medicalImage from "@assets/stock_images/medical_consultation_4bfd952c.jpg";
@@ -118,6 +119,7 @@ export default function Home() {
 
       <StatsSection />
       <PartnerShowcase />
+      <WaitlistSection />
       <ConsultationForm />
       <Footer />
     </div>

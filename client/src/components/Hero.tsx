@@ -1,10 +1,13 @@
-import { ChevronDown } from "lucide-react";
+import { useState } from "react";
+import { ChevronDown, CalendarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { BookingCalendar } from "@/components/BookingCalendar";
 import heroImage from "@assets/stock_images/mountain_sunset_trav_de65896a.jpg";
 
 export function Hero() {
   const { t } = useLanguage();
+  const [showBookingCalendar, setShowBookingCalendar] = useState(false);
   
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -67,9 +70,10 @@ export function Hero() {
             <Button 
               size="lg" 
               className="bg-gold hover:bg-gold/90 text-white font-semibold text-base px-8 py-6 rounded-lg shadow-xl transition-all hover:scale-105"
-              onClick={scrollToContact}
-              data-testid="button-consultation"
+              onClick={() => setShowBookingCalendar(true)}
+              data-testid="button-book-calendar"
             >
+              <CalendarIcon className="w-5 h-5 mr-2" />
               {t.hero.primaryCta}
             </Button>
             <button 
@@ -93,6 +97,8 @@ export function Hero() {
           <ChevronDown className="w-6 h-6 text-white/80 animate-bounce" />
         </div>
       </div>
+
+      <BookingCalendar isOpen={showBookingCalendar} onClose={() => setShowBookingCalendar(false)} />
     </section>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Languages, ChevronDown } from "lucide-react";
+import { Menu, X, Languages, ChevronDown, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import type { Language } from "@/lib/translations";
@@ -117,7 +117,7 @@ export function Header() {
                   >
                     <span className="flex items-center gap-2">
                       {label}
-                      {language === lang && <span className="text-gold">✓</span>}
+                      {language === lang && <Check className="w-4 h-4 text-gold" />}
                     </span>
                   </DropdownMenuItem>
                 ))}

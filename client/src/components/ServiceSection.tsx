@@ -93,7 +93,7 @@ export function ServiceSection({
 
           {/* Content Side */}
           <div
-            className={`relative px-8 lg:px-20 py-12 lg:py-20 flex flex-col justify-center order-2 ${
+            className={`relative px-4 sm:px-6 md:px-12 lg:px-20 py-12 lg:py-20 flex flex-col justify-center order-2 ${
               imagePosition === "right" ? "lg:order-1" : "lg:order-2"
             } ${
               isVisible
@@ -116,7 +116,7 @@ export function ServiceSection({
             </p>
 
             {/* Headline */}
-            <h2 className="font-serif text-4xl lg:text-5xl xl:text-6xl text-navy mb-6 leading-tight relative z-10" data-testid={`heading-service-${sectionNumber}`}>
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-navy mb-6 leading-tight relative z-10" data-testid={`heading-service-${sectionNumber}`}>
               {headline.map((line, idx) => (
                 <span key={idx}>
                   {line}
@@ -126,7 +126,7 @@ export function ServiceSection({
             </h2>
 
             {/* Body Copy */}
-            <p className="text-navy/80 text-lg lg:text-xl leading-relaxed max-w-xl mb-8 relative z-10" data-testid={`text-body-${sectionNumber}`}>
+            <p className="text-navy/80 text-base sm:text-lg lg:text-xl leading-relaxed max-w-xl mb-8 relative z-10" data-testid={`text-body-${sectionNumber}`}>
               {body}
             </p>
 

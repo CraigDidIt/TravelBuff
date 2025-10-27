@@ -68,17 +68,17 @@ export function WaitlistSection() {
 
   return (
     <section className="bg-gradient-to-br from-navy via-navy/95 to-navy/90 py-20 lg:py-32" id="waitlist">
-      <div className="max-w-6xl mx-auto px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left: Content */}
           <div>
             <p className="text-gold uppercase text-sm tracking-[0.15em] font-semibold mb-4" data-testid="text-waitlist-eyebrow">
               {t.waitlist.eyebrow}
             </p>
-            <h2 className="font-serif text-4xl lg:text-5xl text-white mb-6" data-testid="heading-waitlist">
+            <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white mb-6" data-testid="heading-waitlist">
               {t.waitlist.headline}
             </h2>
-            <p className="text-white/80 text-lg mb-8" data-testid="text-waitlist-description">
+            <p className="text-white/80 text-base sm:text-lg mb-8" data-testid="text-waitlist-description">
               {t.waitlist.description}
             </p>
             
@@ -108,7 +108,7 @@ export function WaitlistSection() {
           </div>
 
           {/* Right: Form */}
-          <div className="bg-white rounded-2xl p-8 lg:p-10 shadow-2xl">
+          <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-10 shadow-2xl">
             {!isSubmitted ? (
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">

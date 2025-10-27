@@ -93,22 +93,22 @@ export function ConsultationForm() {
 
   return (
     <section id="contact" className="bg-navy py-20 lg:py-32">
-      <div className="max-w-4xl mx-auto px-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className="text-center mb-12">
           <p className="text-gold uppercase text-sm tracking-[0.15em] font-semibold mb-4" data-testid="text-eyebrow-consultation">
             {t.consultation.eyebrow}
           </p>
-          <h2 className="font-serif text-4xl lg:text-5xl text-white mb-6" data-testid="heading-consultation">
+          <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-white mb-6" data-testid="heading-consultation">
             {t.consultation.headline}
           </h2>
-          <p className="text-white/80 text-lg lg:text-xl max-w-2xl mx-auto" data-testid="text-consultation-description">
+          <p className="text-white/80 text-base sm:text-lg lg:text-xl max-w-2xl mx-auto" data-testid="text-consultation-description">
             {t.consultation.subheadline}
           </p>
         </div>
 
         {/* Form */}
-        <div className="bg-white rounded-2xl p-8 lg:p-12 shadow-2xl">
+        <div className="bg-white rounded-2xl p-6 sm:p-8 lg:p-12 shadow-2xl">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
@@ -163,7 +163,8 @@ export function ConsultationForm() {
                         <Input 
                           type="tel" 
                           placeholder={t.consultation.phonePlaceholder} 
-                          {...field} 
+                          {...field}
+                          value={field.value || ""}
                           className="border-navy/20 focus:border-gold"
                           data-testid="input-phone"
                         />
@@ -222,7 +223,7 @@ export function ConsultationForm() {
                 <Button
                   type="submit"
                   disabled={mutation.isPending}
-                  className="flex-1 bg-gold hover:bg-gold/90 text-white font-semibold text-base py-6 rounded-lg shadow-lg transition-all hover:scale-105"
+                  className="flex-1 bg-gold hover:bg-gold/90 text-white font-semibold text-base py-6 rounded-lg shadow-lg transition-all hover:scale-105 min-h-[48px]"
                   data-testid="button-submit"
                 >
                   {mutation.isPending ? (

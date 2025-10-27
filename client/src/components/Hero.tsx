@@ -46,7 +46,7 @@ export function Hero() {
 
           {/* Main Headline */}
           <h1 
-            className="font-serif text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight opacity-0 animate-fade-up"
+            className="font-serif text-3xl sm:text-4xl md:text-6xl lg:text-7xl text-white mb-6 leading-tight opacity-0 animate-fade-up px-4"
             style={{ animationDelay: "0.5s" }}
             data-testid="heading-hero"
           >
@@ -55,7 +55,7 @@ export function Hero() {
 
           {/* Subheadline */}
           <p 
-            className="font-sans text-lg md:text-xl lg:text-2xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-up"
+            className="font-sans text-base sm:text-lg md:text-xl lg:text-2xl text-white/90 mb-10 max-w-2xl mx-auto leading-relaxed opacity-0 animate-fade-up px-4"
             style={{ animationDelay: "0.8s" }}
             data-testid="text-subheadline"
           >
@@ -64,12 +64,12 @@ export function Hero() {
 
           {/* CTAs */}
           <div 
-            className="flex flex-col sm:flex-row gap-4 justify-center items-center opacity-0 animate-fade-up"
+            className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center w-full max-w-md sm:max-w-none mx-auto opacity-0 animate-fade-up"
             style={{ animationDelay: "1.1s" }}
           >
             <Button 
               size="lg" 
-              className="bg-gold hover:bg-gold/90 text-white font-semibold text-base px-8 py-6 rounded-lg shadow-xl transition-all hover:scale-105"
+              className="bg-gold hover:bg-gold/90 text-white font-semibold text-sm sm:text-base px-6 sm:px-8 py-5 sm:py-6 rounded-lg shadow-xl transition-all hover:scale-105 w-full sm:w-auto min-h-[44px]"
               onClick={() => setShowBookingCalendar(true)}
               data-testid="button-book-calendar"
             >
@@ -78,7 +78,7 @@ export function Hero() {
             </Button>
             <button 
               onClick={scrollToServices}
-              className="text-white font-sans text-base hover:text-gold transition-colors underline-offset-4 hover:underline"
+              className="text-white font-sans text-sm sm:text-base hover:text-gold transition-colors underline-offset-4 hover:underline min-h-[44px] flex items-center"
               data-testid="link-explore"
             >
               {t.hero.secondaryCta}

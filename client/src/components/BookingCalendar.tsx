@@ -126,7 +126,7 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-3xl max-h-[90vh] overflow-y-auto" data-testid="dialog-booking">
+      <DialogContent className="sm:max-w-3xl max-h-[90vh] overflow-y-auto p-4 sm:p-6" data-testid="dialog-booking">
         {!isSubmitted ? (
           <>
             <DialogHeader>
@@ -139,7 +139,7 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
               </DialogDescription>
             </DialogHeader>
 
-            <div className="grid md:grid-cols-2 gap-8 mt-4">
+            <div className="grid md:grid-cols-2 gap-6 md:gap-8 mt-4">
               {/* Calendar Section */}
               <div className="space-y-4">
                 <div>
@@ -163,9 +163,9 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                       <Clock className="w-4 h-4 text-gold" />
                       {t.bookingCalendar.selectTimeLabel}
                     </h3>
-                    {availability?.availableSlots?.length > 0 ? (
-                      <div className="grid grid-cols-3 gap-2">
-                        {availability.availableSlots.map((time: string) => (
+                    {(availability as any)?.availableSlots?.length > 0 ? (
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        {(availability as any).availableSlots.map((time: string) => (
                           <button
                             key={time}
                             type="button"
@@ -241,7 +241,8 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                             <Input 
                               type="tel" 
                               placeholder={t.bookingCalendar.phonePlaceholder} 
-                              {...field} 
+                              {...field}
+                              value={field.value || ""}
                               className="border-navy/20 focus:border-gold"
                               data-testid="input-booking-phone"
                             />
@@ -287,6 +288,7 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                               placeholder={t.bookingCalendar.messagePlaceholder}
                               className="min-h-[80px] border-navy/20 focus:border-gold resize-none"
                               {...field}
+                              value={field.value || ""}
                               data-testid="input-booking-message"
                             />
                           </FormControl>
@@ -298,7 +300,7 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                     <Button
                       type="submit"
                       disabled={mutation.isPending || !selectedDate || !selectedTime}
-                      className="w-full bg-gold hover:bg-gold/90 text-white font-semibold"
+                      className="w-full bg-gold hover:bg-gold/90 text-white font-semibold min-h-[48px]"
                       data-testid="button-booking-submit"
                     >
                       {mutation.isPending ? (

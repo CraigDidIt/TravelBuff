@@ -76,7 +76,7 @@ export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps)
 
   return (
     <Dialog open={isOpen} onOpenChange={handleClose}>
-      <DialogContent className="sm:max-w-md" data-testid="dialog-guide-download">
+      <DialogContent className="sm:max-w-md p-4 sm:p-6" data-testid="dialog-guide-download">
         {!isSubmitted ? (
           <>
             <DialogHeader>
@@ -100,7 +100,8 @@ export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps)
                       <FormControl>
                         <Input 
                           placeholder={t.guideDownload.namePlaceholder} 
-                          {...field} 
+                          {...field}
+                          value={field.value || ""}
                           className="border-navy/20 focus:border-gold"
                           data-testid="input-guide-name"
                         />
@@ -133,7 +134,7 @@ export function GuideDownloadModal({ isOpen, onClose }: GuideDownloadModalProps)
                 <Button
                   type="submit"
                   disabled={mutation.isPending}
-                  className="w-full bg-gold hover:bg-gold/90 text-white font-semibold"
+                  className="w-full bg-gold hover:bg-gold/90 text-white font-semibold min-h-[48px]"
                   data-testid="button-guide-submit"
                 >
                   {mutation.isPending ? (

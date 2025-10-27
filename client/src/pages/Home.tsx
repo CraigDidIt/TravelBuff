@@ -1,3 +1,4 @@
+import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { ValueProposition } from "@/components/ValueProposition";
 import { ServiceSection } from "@/components/ServiceSection";
@@ -46,6 +47,7 @@ export default function Home() {
 
   return (
     <div className="min-h-screen">
+      <Header />
       <Hero />
       <ValueProposition />
       

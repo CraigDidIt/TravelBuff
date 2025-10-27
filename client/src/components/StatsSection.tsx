@@ -87,7 +87,7 @@ export function StatsSection() {
   }, [isVisible]);
 
   return (
-    <section ref={sectionRef} className="bg-white py-20 lg:py-32">
+    <section ref={sectionRef} id="stats" className="bg-white py-20 lg:py-32">
       <div className="max-w-6xl mx-auto px-8">
         {/* Eyebrow */}
         <p 

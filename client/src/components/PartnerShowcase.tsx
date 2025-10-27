@@ -31,7 +31,7 @@ export function PartnerShowcase() {
   ];
 
   return (
-    <section ref={sectionRef} className="bg-gray-50 py-20 lg:py-24">
+    <section ref={sectionRef} id="partners" className="bg-gray-50 py-20 lg:py-24">
       <div className="max-w-6xl mx-auto px-8">
         {/* Section Header */}
         <div className="text-center mb-16">

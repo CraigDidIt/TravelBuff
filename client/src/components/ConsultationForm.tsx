@@ -221,7 +221,7 @@ export function ConsultationForm() {
                 <Button
                   type="submit"
                   disabled={mutation.isPending}
-                  className="flex-1 bg-gold hover:bg-gold/90 text-navy font-semibold text-base py-6 rounded-lg shadow-lg transition-all hover:scale-105"
+                  className="flex-1 bg-gold hover:bg-gold/90 text-white font-semibold text-base py-6 rounded-lg shadow-lg transition-all hover:scale-105"
                   data-testid="button-submit"
                 >
                   {mutation.isPending ? (

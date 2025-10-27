@@ -12,7 +12,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative h-screen min-h-[600px] lg:h-screen overflow-hidden">
+    <section className="relative h-screen min-h-[600px] lg:h-screen overflow-hidden" id="home">
       {/* Background Image with Ken Burns Effect */}
       <div className="absolute inset-0">
         <div 
@@ -25,15 +25,6 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-radial from-transparent via-black/20 to-black/40" />
       </div>
 
-      {/* Trilingual Badge */}
-      <div className="absolute top-6 right-6 bg-white/90 backdrop-blur-sm px-6 py-3 rounded-lg shadow-lg z-10" data-testid="badge-language">
-        <p className="text-sm font-sans font-medium text-navy">
-          🌐 FLUENT IN
-        </p>
-        <p className="text-xs text-navy/70 mt-1">
-          English • Español • Français
-        </p>
-      </div>
 
       {/* Hero Content */}
       <div className="relative h-full flex flex-col items-center justify-center px-4 z-10">
@@ -76,7 +67,7 @@ export function Hero() {
           >
             <Button 
               size="lg" 
-              className="bg-gold hover:bg-gold/90 text-navy font-semibold text-base px-8 py-6 rounded-lg shadow-xl transition-all hover:scale-105"
+              className="bg-gold hover:bg-gold/90 text-white font-semibold text-base px-8 py-6 rounded-lg shadow-xl transition-all hover:scale-105"
               onClick={scrollToContact}
               data-testid="button-consultation"
             >

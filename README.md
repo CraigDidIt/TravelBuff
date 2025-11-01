@@ -54,11 +54,10 @@ Travelbuff Concierge Services is a modern single-page web application showcasing
 - **Lucide React** for icon system
 
 ### Backend
-- **Express.js** with TypeScript for API routes
-- **In-memory storage** for development (production-ready interface for future database migration)
-- **Nodemailer** for email notifications (optional SMTP configuration)
-- **Zod** for request validation and type-safe schemas
-- **Drizzle ORM** schemas defined (ready for PostgreSQL when needed)
+- **Supabase** for PostgreSQL database and real-time APIs
+- **Row Level Security (RLS)** for data protection
+- **Zod** for client-side validation and type-safe schemas
+- **Drizzle ORM** schemas defined for type consistency
 
 ### Development Tools
 - **Vite** for fast development server and optimized production builds
@@ -70,13 +69,14 @@ Travelbuff Concierge Services is a modern single-page web application showcasing
 
 ### Prerequisites
 - **Node.js 18+** installed
+- **Supabase account** (free tier available at https://supabase.com)
 
-### Installation
+### Quick Start
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/travelbuff-concierge.git
-   cd travelbuff-concierge
+   git clone https://github.com/CraigDidIt/TravelBuff.git
+   cd TravelBuff
    ```
 
 2. **Install dependencies**
@@ -84,46 +84,42 @@ Travelbuff Concierge Services is a modern single-page web application showcasing
    npm install
    ```
 
-3. **Run the development server**
+3. **Set up Supabase**
+   
+   Follow the detailed guide in **[SUPABASE_SETUP.md](./SUPABASE_SETUP.md)** to:
+   - Create your Supabase project
+   - Run the database schema
+   - Get your API credentials
+
+4. **Configure environment variables**
+   
+   Copy `.env.example` to `.env` and add your Supabase credentials:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Edit `.env` and add:
+   ```env
+   VITE_SUPABASE_URL=https://your-project.supabase.co
+   VITE_SUPABASE_ANON_KEY=your-anon-key-here
+   ```
+
+5. **Run the development server**
    ```bash
    npm run dev
    ```
    
    The application will be available at **http://localhost:5000**
-   
-   Both the Express backend and Vite frontend are served on the same port through Vite's middleware system.
 
-### Optional Configuration
+### Testing Form Submissions
 
-#### Email Notifications
+After setup, test that forms are working:
 
-To enable email notifications for consultation requests, create a `.env` file in the root directory:
+1. Submit the consultation form on the homepage
+2. Check your Supabase dashboard > Table Editor > `consultations` table
+3. Your submission should appear there instantly
 
-```env
-# SMTP Configuration (optional)
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USER=your-email@gmail.com
-SMTP_PASS=your-app-password
-NOTIFICATION_EMAIL=notifications@travelbuff.com
-```
-
-Without SMTP configuration, the application will still work but email notifications will be disabled. All form submissions are logged to the console.
-
-#### Future Database Migration
-
-The application currently uses in-memory storage. Database schemas are defined using Drizzle ORM for future PostgreSQL migration:
-
-```env
-DATABASE_URL=postgresql://user:password@host:port/database
-```
-
-Then run migrations:
-```bash
-npm run db:push
-```
-
-**Note:** Database migration requires updating `server/storage.ts` to use a PostgreSQL implementation instead of `MemStorage`.
+All form data is saved directly to Supabase with Row Level Security protecting the data.
 
 ## 📁 Project Structure
 
@@ -151,13 +147,10 @@ travelbuff-concierge/
 │   │   │   └── CaribbeanImmersion.tsx
 │   │   └── App.tsx          # Main application component
 │   └── index.html
-├── server/                   # Backend Express application
-│   ├── routes.ts            # API route definitions
-│   ├── storage.ts           # Storage interface and implementations
-│   ├── email.ts             # Email service
-│   └── index.ts             # Server entry point
 ├── shared/                   # Shared types and schemas
 │   └── schema.ts            # Drizzle ORM schemas and Zod validators
+├── .github/workflows/       # GitHub Actions workflows
+│   └── deploy.yml          # Automated GitHub Pages deployment
 └── attached_assets/         # Static assets (images, etc.)
 ```
 
@@ -178,43 +171,58 @@ travelbuff-concierge/
 - Tablet: `640px - 1024px`
 - Desktop: `> 1024px`
 
-## 📧 Email Configuration
+## 💾 Database
 
-The application includes email notification capabilities via Nodemailer. Email service will gracefully degrade if SMTP credentials are not configured.
+The application uses Supabase as its backend database with the following tables:
 
-### Gmail Setup Example
-1. Enable 2-factor authentication on your Gmail account
-2. Generate an App Password (Google Account > Security > App Passwords)
-3. Use the app password in `SMTP_PASS` environment variable
+- **consultations** - Consultation requests from the contact form
+- **email_leads** - Email captures from guide downloads
+- **waitlist** - Waitlist signups for priority access
+- **bookings** - Calendar booking requests
+- **partners** - Partner showcase data (future feature)
+- **testimonials** - Customer testimonials (future feature)
+
+All tables use Row Level Security (RLS) policies that allow public form submissions but restrict viewing to authenticated users.
 
 ## 🔒 Security
 
-- Environment-based configuration for sensitive SMTP credentials
-- Input validation with Zod schemas on all API endpoints
+- **Row Level Security (RLS)** on all Supabase tables
+- Client-side input validation with Zod schemas
 - Type-safe data handling with TypeScript across the stack
-- Future-ready for SQL injection protection via Drizzle ORM
+- Environment variables for sensitive Supabase credentials
+- Anon key safely used on frontend (protected by RLS policies)
 
 ## 🌐 Deployment
 
-### Replit Deployment (Recommended)
-The application is configured for seamless deployment on Replit:
-1. Connect your GitHub repository to Replit
-2. Set environment variables in Replit Secrets (SMTP credentials if desired)
-3. Click "Run" - the `npm run dev` command starts the application
+### GitHub Pages (Recommended)
 
-### Production Build
+The application is configured for automatic deployment to GitHub Pages. See **[DEPLOYMENT.md](./DEPLOYMENT.md)** for complete setup instructions.
+
+**Quick Summary:**
+1. Add your Supabase credentials as GitHub Secrets
+2. Enable GitHub Pages with "GitHub Actions" as the source
+3. Push to `main` branch - automatic deployment!
+
+Your live site will be at: **https://craigdidit.github.io/TravelBuff/**
+
+The GitHub Actions workflow automatically:
+- Builds the static site with the correct base path
+- Injects Supabase environment variables
+- Deploys to GitHub Pages on every push
+
+### Local Production Build
+
+Test the production build locally:
+
 ```bash
-# Build the frontend and bundle the backend
-npm run build
+# Build with GitHub Pages base path
+npm exec vite build -- --base=/TravelBuff/
 
-# Start the production server
-npm start
+# Serve the build locally
+npx serve dist/public -l 3000
 ```
 
-The build process:
-- Vite builds the React frontend to `dist/public`
-- ESBuild bundles the Express server to `dist/index.js`
-- Production server serves the static frontend and API routes
+Visit http://localhost:3000 to test the production build.
 
 ## 🤝 Contributing
 

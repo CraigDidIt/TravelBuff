@@ -39,7 +39,7 @@ export default function MedicalTourism() {
 
   return (
     <div className="min-h-screen bg-white">
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/98 backdrop-blur-xl shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" data-testid="link-home">
             <a className="text-2xl font-serif text-navy-900" data-testid="button-back">

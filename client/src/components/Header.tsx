@@ -155,7 +155,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 bg-white/95 backdrop-blur-md rounded-b-lg shadow-lg">
+          <div className="md:hidden py-4 bg-white/98 backdrop-blur-xl rounded-b-lg shadow-lg">
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <button

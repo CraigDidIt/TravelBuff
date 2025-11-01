@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { insertConsultationSchema, type InsertConsultation } from "@shared/schema";
-import { apiRequest } from "@/lib/queryClient";
+import { supabase } from "@/lib/supabase";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import {
@@ -44,7 +44,14 @@ export function ConsultationForm() {
 
   const mutation = useMutation({
     mutationFn: async (data: InsertConsultation) => {
-      return await apiRequest("POST", "/api/consultations", data);
+      const { data: result, error } = await supabase
+        .from('consultations')
+        .insert([data])
+        .select()
+        .single();
+      
+      if (error) throw error;
+      return result;
     },
     onSuccess: () => {
       setIsSubmitted(true);

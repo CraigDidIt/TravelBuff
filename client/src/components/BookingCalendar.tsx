@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { insertBookingSchema, type InsertBooking } from "@shared/schema";
-import { apiRequest, queryClient } from "@/lib/queryClient";
+import { supabase } from "@/lib/supabase";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import {
@@ -60,16 +60,16 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
     },
   });
 
-  const formattedDate = selectedDate ? format(selectedDate, "yyyy-MM-dd") : "";
-
-  const { data: availability } = useQuery({
-    queryKey: ["/api/bookings/availability", formattedDate],
-    enabled: !!formattedDate,
-  });
-
   const mutation = useMutation({
     mutationFn: async (data: InsertBooking) => {
-      return await apiRequest("POST", "/api/bookings", data);
+      const { data: result, error } = await supabase
+        .from('bookings')
+        .insert([data])
+        .select()
+        .single();
+      
+      if (error) throw error;
+      return result;
     },
     onSuccess: () => {
       setIsSubmitted(true);
@@ -78,23 +78,13 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
         description: t.bookingCalendar.toastSuccessDescription,
       });
       form.reset();
-      queryClient.invalidateQueries({ queryKey: ["/api/bookings/availability"] });
     },
-    onError: (error: any) => {
-      const isConflict = error?.response?.status === 409;
+    onError: () => {
       toast({
-        title: isConflict ? t.bookingCalendar.toastConflictTitle : t.bookingCalendar.toastErrorTitle,
-        description: isConflict 
-          ? t.bookingCalendar.toastConflictDescription 
-          : t.bookingCalendar.toastErrorDescription,
+        title: t.bookingCalendar.toastErrorTitle,
+        description: t.bookingCalendar.toastErrorDescription,
         variant: "destructive",
       });
-      
-      if (isConflict) {
-        setSelectedTime("");
-        form.setValue("time", "");
-        queryClient.invalidateQueries({ queryKey: ["/api/bookings/availability", formattedDate] });
-      }
     },
   });
 
@@ -163,27 +153,23 @@ export function BookingCalendar({ isOpen, onClose }: BookingCalendarProps) {
                       <Clock className="w-4 h-4 text-gold" />
                       {t.bookingCalendar.selectTimeLabel}
                     </h3>
-                    {(availability as any)?.availableSlots?.length > 0 ? (
-                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        {(availability as any).availableSlots.map((time: string) => (
-                          <button
-                            key={time}
-                            type="button"
-                            onClick={() => handleTimeSelect(time)}
-                            className={`py-2 px-3 text-sm rounded-md border transition-all ${
-                              selectedTime === time
-                                ? "bg-gold text-white border-gold font-semibold"
-                                : "border-navy/20 text-navy hover:border-gold hover:bg-gold/5"
-                            }`}
-                            data-testid={`time-slot-${time}`}
-                          >
-                            {time}
-                          </button>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-navy/60 text-sm">{t.bookingCalendar.noTimesAvailable}</p>
-                    )}
+                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                      {['09:00', '10:00', '11:00', '14:00', '15:00', '16:00'].map((time: string) => (
+                        <button
+                          key={time}
+                          type="button"
+                          onClick={() => handleTimeSelect(time)}
+                          className={`py-2 px-3 text-sm rounded-md border transition-all ${
+                            selectedTime === time
+                              ? "bg-gold text-white border-gold font-semibold"
+                              : "border-navy/20 text-navy hover:border-gold hover:bg-gold/5"
+                          }`}
+                          data-testid={`time-slot-${time}`}
+                        >
+                          {time}
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 )}
               </div>

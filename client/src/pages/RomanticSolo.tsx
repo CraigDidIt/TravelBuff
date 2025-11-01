@@ -67,12 +67,12 @@ export default function RomanticSolo() {
 
   const testimonials = [
     {
-      quote: "Our 10th anniversary trip to St. Lucia was absolutely magical. Every detail was perfect—from the private beach dinner to the couples massage overlooking the Pitons. Travelbuff made it effortless.",
+      quote: "Our 10th anniversary trip to St. Lucia was absolutely magical. Every detail was perfect—from the private beach dinner to the couples massage overlooking the Pitons. Travelbuff Concierge Services made it effortless.",
       author: "Michael & Sarah Chen",
       trip: "Romantic Escape • St. Lucia"
     },
     {
-      quote: "As a solo female traveler, I was nervous about exploring the Caribbean alone. The Travelbuff team connected me with amazing local guides and fellow travelers. I felt safe, empowered, and truly immersed in the culture.",
+      quote: "As a solo female traveler, I was nervous about exploring the Caribbean alone. The Travelbuff Concierge Services team connected me with amazing local guides and fellow travelers. I felt safe, empowered, and truly immersed in the culture.",
       author: "Elena Rodriguez",
       trip: "Solo Adventure • Trinidad & Tobago"
     }
@@ -84,7 +84,7 @@ export default function RomanticSolo() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" data-testid="link-home">
             <a className="text-2xl font-serif text-navy-900" data-testid="button-back">
-              Travelbuff
+              Travelbuff Concierge Services
             </a>
           </Link>
           <Button 

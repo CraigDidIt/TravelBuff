@@ -14,7 +14,7 @@ export function Footer() {
           {/* Brand Column */}
           <div>
             <h3 className="font-serif text-2xl text-gold mb-4" data-testid="text-footer-brand">
-              Travelbuff
+              Travelbuff Concierge Services
             </h3>
             <p className="text-white/70 text-sm leading-relaxed mb-4">
               {t.footer.tagline}

@@ -72,7 +72,7 @@ export function Header() {
                   : "text-white drop-shadow-lg"
               }`}
             >
-              Travelbuff
+              Travelbuff Concierge Services
             </span>
           </button>
 

@@ -215,7 +215,7 @@ export const translations: Record<Language, Translations> = {
       secondaryCta: 'Explore Our Services →',
     },
     valueProposition: {
-      eyebrow: 'WHY TRAVELBUFF',
+      eyebrow: 'WHY TRAVELBUFF CONCIERGE SERVICES',
       headline: 'More Than a Travel Agent—Your Global Life Partner',
       body: "We don't book trips. We design transformative experiences backed by decades of cultural expertise, multilingual fluency, and a personally-vetted network spanning three continents.",
       feature1: 'Trilingual Expertise',
@@ -410,7 +410,7 @@ export const translations: Record<Language, Translations> = {
       secondaryCta: 'Explorar Servicios →',
     },
     valueProposition: {
-      eyebrow: 'POR QUÉ TRAVELBUFF',
+      eyebrow: 'POR QUÉ TRAVELBUFF CONCIERGE SERVICES',
       headline: 'Más Que Una Agencia—Tu Compañero Global de Vida',
       body: 'No reservamos viajes. Diseñamos experiencias transformadoras respaldadas por décadas de experiencia cultural, fluidez multilingüe y una red personalmente verificada que abarca tres continentes.',
       feature1: 'Experiencia Trilingüe',
@@ -605,7 +605,7 @@ export const translations: Record<Language, Translations> = {
       secondaryCta: 'Découvrir Nos Services →',
     },
     valueProposition: {
-      eyebrow: 'POURQUOI TRAVELBUFF',
+      eyebrow: 'POURQUOI TRAVELBUFF CONCIERGE SERVICES',
       headline: 'Plus Qu\'une Agence—Votre Partenaire de Vie Global',
       body: 'Nous ne réservons pas de voyages. Nous concevons des expériences transformatrices soutenues par des décennies d\'expertise culturelle, de maîtrise multilingue et un réseau personnellement vérifié couvrant trois continents.',
       feature1: 'Expertise Trilingue',

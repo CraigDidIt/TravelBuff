@@ -43,7 +43,7 @@ export default function MedicalTourism() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <Link href="/" data-testid="link-home">
             <a className="text-2xl font-serif text-navy-900" data-testid="button-back">
-              Travelbuff
+              Travelbuff Concierge Services
             </a>
           </Link>
           <Button 
@@ -101,7 +101,7 @@ export default function MedicalTourism() {
               COMPREHENSIVE CARE
             </p>
             <h2 className="font-serif text-4xl md:text-5xl text-navy-900 mb-6" data-testid="heading-features">
-              Why Choose Medical Tourism with Travelbuff?
+              Why Choose Medical Tourism with Travelbuff Concierge Services?
             </h2>
             <p className="text-lg text-navy-700 max-w-3xl mx-auto" data-testid="text-features-desc">
               We eliminate the complexity and risk from international medical travel. Every detail is managed by our trilingual team with decades of healthcare coordination experience.

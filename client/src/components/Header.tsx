@@ -107,15 +107,26 @@ export function Header() {
                   <ChevronDown className="w-3 h-3" />
                 </button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" data-testid="menu-language-options">
+              <DropdownMenuContent 
+                align="end" 
+                data-testid="menu-language-options"
+                className={isScrolled 
+                  ? "bg-cream/98 backdrop-blur-xl border-navy/20 shadow-lg" 
+                  : "bg-navy/95 backdrop-blur-xl border-white/20 shadow-xl"
+                }
+              >
                 {Object.entries(languageLabels).map(([lang, label]) => (
                   <DropdownMenuItem
                     key={lang}
                     onClick={() => setLanguage(lang as Language)}
-                    className={`cursor-pointer ${language === lang ? 'bg-gold/10 font-semibold' : ''}`}
+                    className={`cursor-pointer ${
+                      isScrolled 
+                        ? `text-navy ${language === lang ? 'bg-gold/10 font-semibold' : 'hover:bg-navy/5'}` 
+                        : `text-white ${language === lang ? 'bg-gold/20 font-semibold' : 'hover:bg-white/10'}`
+                    }`}
                     data-testid={`option-language-${lang}`}
                   >
-                    <span className="flex items-center gap-2">
+                    <span className="flex items-center gap-2 drop-shadow-sm">
                       {label}
                       {language === lang && <Check className="w-4 h-4 text-gold" />}
                     </span>
@@ -155,13 +166,21 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 bg-white/98 backdrop-blur-xl rounded-b-lg shadow-lg">
+          <div className={`md:hidden py-4 rounded-b-lg shadow-lg border-t transition-colors ${
+            isScrolled 
+              ? "bg-cream/98 backdrop-blur-xl border-navy/20" 
+              : "bg-navy/95 backdrop-blur-xl border-white/20"
+          }`}>
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <button
                   key={link.id}
                   onClick={() => scrollToSection(link.id)}
-                  className="text-navy hover:bg-navy/5 px-4 py-3 text-left font-sans font-medium transition-colors"
+                  className={`px-4 py-3 text-left font-sans font-medium transition-colors ${
+                    isScrolled 
+                      ? "text-navy hover:bg-navy/5" 
+                      : "text-white hover:bg-white/10 drop-shadow-sm"
+                  }`}
                   data-testid={`link-mobile-${link.id}`}
                 >
                   {link.label}
@@ -169,7 +188,9 @@ export function Header() {
               ))}
               
               <div className="px-4 py-3">
-                <p className="text-xs text-navy/60 mb-2 font-medium">Language / Idioma / Langue</p>
+                <p className={`text-xs mb-2 font-medium ${
+                  isScrolled ? "text-navy/60" : "text-white/60"
+                }`}>Language / Idioma / Langue</p>
                 <div className="flex gap-2">
                   {Object.entries(languageLabels).map(([lang, label]) => (
                     <button
@@ -177,8 +198,10 @@ export function Header() {
                       onClick={() => setLanguage(lang as Language)}
                       className={`flex-1 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                         language === lang
-                          ? 'bg-gold text-white'
-                          : 'bg-cream hover:bg-cream/70 text-navy'
+                          ? 'bg-gold text-white shadow-md'
+                          : isScrolled
+                            ? 'bg-cream hover:bg-cream/70 text-navy'
+                            : 'bg-white/10 hover:bg-white/20 text-white border border-white/30'
                       }`}
                       data-testid={`button-mobile-language-${lang}`}
                     >

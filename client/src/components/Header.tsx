@@ -62,18 +62,14 @@ export function Header() {
           {/* Logo/Brand */}
           <button
             onClick={() => scrollToSection("home")}
-            className="flex items-center gap-2 group"
+            className={`flex items-center gap-2 group font-serif text-2xl font-bold transition-colors ${
+              isScrolled
+                ? "text-navy"
+                : "text-white drop-shadow-lg"
+            }`}
             data-testid="button-logo"
           >
-            <span
-              className={`font-serif text-2xl font-bold transition-colors ${
-                isScrolled
-                  ? "text-navy"
-                  : "text-white drop-shadow-lg"
-              }`}
-            >
-              Travelbuff Concierge Services
-            </span>
+            Travelbuff Concierge Services
           </button>
 
           {/* Desktop Navigation */}
@@ -166,11 +162,14 @@ export function Header() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className={`md:hidden py-4 rounded-b-lg shadow-lg border-t transition-colors ${
-            isScrolled 
-              ? "bg-cream/98 backdrop-blur-xl border-navy/20" 
-              : "bg-navy/95 backdrop-blur-xl border-white/20"
-          }`}>
+          <div 
+            className={`md:hidden py-4 rounded-b-lg shadow-lg border-t transition-colors ${
+              isScrolled 
+                ? "bg-cream/98 backdrop-blur-xl border-navy/20" 
+                : "bg-navy/95 backdrop-blur-xl border-white/20"
+            }`}
+            data-testid="panel-mobile-menu"
+          >
             <nav className="flex flex-col gap-2">
               {navLinks.map((link) => (
                 <button
